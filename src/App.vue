@@ -22,4 +22,11 @@ body {
   color: #555;
   background-color: #f5f5f5;
 }
+
+a,
+input,
+button {
+  font: inherit;
+  color: inherit;
+}
 </style>
