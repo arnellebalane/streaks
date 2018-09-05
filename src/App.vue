@@ -9,6 +9,12 @@
   --primary-color: #2d9cdb;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html {
   font-size: 62.5%;
 }
