@@ -5,6 +5,10 @@
 </template>
 
 <style>
+:root {
+  --primary-color: #2d9cdb;
+}
+
 html {
   font-size: 62.5%;
 }
