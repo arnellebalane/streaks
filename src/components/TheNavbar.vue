@@ -1,7 +1,7 @@
 <template>
   <header class="the-navbar" :class="$style.header">
     <div :class="$style.wrapper">
-      <h1 :class="$style.title">Your Streaks</h1>
+      <h1>Your Streaks</h1>
     </div>
   </header>
 </template>
@@ -18,14 +18,14 @@ export default {
   background-color: #fff;
 }
 
-.wrapper {
-  width: 63rem;
-  margin: 0 auto;
-}
-
-.title {
+.header h1 {
   margin: 0;
   font-size: 1.8rem;
   font-weight: 700;
+}
+
+.wrapper {
+  width: 63rem;
+  margin: 0 auto;
 }
 </style>
