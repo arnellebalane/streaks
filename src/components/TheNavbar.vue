@@ -1,6 +1,6 @@
 <template>
   <header class="the-navbar" :class="$style.header">
-    <div :class="$style.wrapper">
+    <div :class="$shared.wrapper">
       <h1>Your Streaks</h1>
     </div>
   </header>
@@ -12,6 +12,9 @@ export default {
 };
 </script>
 
+
+<!-- eslint-disable-next-line -->
+<style module="$shared" src="@/stylesheets/shared.css"></style>
 <style module>
 .header {
   padding: 3.2rem 0;
@@ -22,10 +25,5 @@ export default {
   margin: 0;
   font-size: 1.8rem;
   font-weight: 700;
-}
-
-.wrapper {
-  width: 63rem;
-  margin: 0 auto;
 }
 </style>

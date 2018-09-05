@@ -2,7 +2,7 @@
   <div class="home">
     <TheNavbar />
 
-    <div :class="$style.wrapper">
+    <div :class="$shared.wrapper">
       <EmptyState />
     </div>
   </div>
@@ -22,9 +22,5 @@ export default {
 };
 </script>
 
-<style module>
-.wrapper {
-  width: 63rem;
-  margin: 0 auto;
-}
-</style>
+<!-- eslint-disable-next-line -->
+<style module="$shared" src="@/stylesheets/shared.css"></style>
