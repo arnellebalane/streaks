@@ -10,5 +10,13 @@
     "streak"
   ],
   "author": "Arnelle Balane <arnellebalane@gmail.com> (https://arnellebalane.com/)",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arnellebalane/streaks.git"
+  },
+  "bugs": {
+    "url": "https://github.com/arnellebalane/streaks/issues"
+  },
+  "homepage": "https://github.com/arnellebalane/streaks#readme"
 }
