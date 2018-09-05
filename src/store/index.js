@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import streaks from "./streaks";
 
 Vue.use(Vuex);
 
@@ -15,5 +16,8 @@ const mutations = {
 
 export default new Vuex.Store({
   state,
-  mutations
+  mutations,
+  modules: {
+    streaks
+  }
 });
