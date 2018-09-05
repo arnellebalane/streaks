@@ -1,0 +1,14 @@
+{
+  "name": "streaks",
+  "version": "1.0.0",
+  "description": "Keep track of anything using Github-style streaks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "streak"
+  ],
+  "author": "Arnelle Balane <arnellebalane@gmail.com> (https://arnellebalane.com/)",
+  "license": "MIT"
+}
