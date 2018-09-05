@@ -7,8 +7,16 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
+
 export default {
-  name: "TheNavbar"
+  name: "TheNavbar",
+
+  mounted() {
+    this.setNavbarHeight(this.$el.getBoundingClientRect().height);
+  },
+
+  methods: mapMutations(["setNavbarHeight"])
 };
 </script>
 
