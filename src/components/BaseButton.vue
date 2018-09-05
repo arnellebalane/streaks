@@ -1,6 +1,6 @@
 <template>
   <button
-    :class="['base-button', $style.button]"
+    :class="$style.button"
     v-bind="$attrs"
     v-on="$listeners"
   >

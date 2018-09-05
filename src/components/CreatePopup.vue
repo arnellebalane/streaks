@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="['create-popup', $style.popupModal]"
+    :class="$style.popupModal"
     :style="{top: navbarHeight + 'px'}"
   >
     <form :class="$style.popup" @submit.prevent="onSubmit">

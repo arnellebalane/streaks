@@ -1,5 +1,5 @@
 <template>
-  <article :class="['streak-widget', $style.streakWidget]">
+  <article :class="$style.streakWidget">
     <StreakWidgetHeader />
     <StreakWidgetGraph />
 

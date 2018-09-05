@@ -1,5 +1,5 @@
 <template>
-  <div class="base-input">
+  <div>
     <label v-if="label" :for="id" :class="$style.label">
       {{label}}
     </label>

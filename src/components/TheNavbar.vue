@@ -1,5 +1,5 @@
 <template>
-  <header :class="['the-navbar', $style.header]">
+  <header :class="$style.header">
     <div :class="$shared.wrapper">
       <h1>Your Streaks</h1>
     </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div>
     <TheNavbar />
 
     <div :class="$shared.wrapper">

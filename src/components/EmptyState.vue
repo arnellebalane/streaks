@@ -1,5 +1,5 @@
 <template>
-  <div :class="['empty-state', $style.emptyState]">
+  <div :class="$style.emptyState">
     <p>You don't seem to be tracking any streaks yet.</p>
 
     <BaseButton :class="$style.createButton">
