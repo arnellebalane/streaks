@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <TheNavbar />
-    <CreatePopup />
 
     <div :class="$shared.wrapper">
       <EmptyState />
@@ -12,15 +11,13 @@
 <script>
 import TheNavbar from "@/components/TheNavbar.vue";
 import EmptyState from "@/components/EmptyState.vue";
-import CreatePopup from "@/components/CreatePopup.vue";
 
 export default {
   name: "Home",
 
   components: {
     TheNavbar,
-    EmptyState,
-    CreatePopup
+    EmptyState
   }
 };
 </script>
