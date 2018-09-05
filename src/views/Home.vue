@@ -1,11 +1,17 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
+    <TheNavbar />
   </div>
 </template>
 
 <script>
+import TheNavbar from "@/components/TheNavbar.vue";
+
 export default {
-  name: "Home"
+  name: "Home",
+
+  components: {
+    TheNavbar
+  }
 };
 </script>
