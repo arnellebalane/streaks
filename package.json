@@ -21,6 +21,9 @@
     "@vue/eslint-config-prettier": "^3.0.1",
     "vue-template-compiler": "^2.5.17"
   },
+  "babel": {
+    "presets": ["@vue/app"]
+  },
   "eslintConfig": {
     "root": true,
     "env": {
