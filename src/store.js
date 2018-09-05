@@ -3,8 +3,17 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
+const state = {
+  navbarHeight: 0
+};
+
+const mutations = {
+  setNavbarHeight(state, navbarHeight) {
+    state.navbarHeight = navbarHeight;
+  }
+};
+
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
-  actions: {}
+  state,
+  mutations
 });
