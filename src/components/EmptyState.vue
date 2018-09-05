@@ -2,16 +2,22 @@
   <div class="empty-state" :class="$style.emptyState">
     <p>You don't seem to be tracking any streaks yet.</p>
 
-    <button :class="$style.createButton">
+    <BaseButton :class="$style.createButton">
       <img src="../assets/plus.png" alt="">
       Create Streak
-    </button>
+    </BaseButton>
   </div>
 </template>
 
 <script>
+import BaseButton from "./BaseButton.vue";
+
 export default {
-  name: "EmptyState"
+  name: "EmptyState",
+
+  components: {
+    BaseButton
+  }
 };
 </script>
 
@@ -32,16 +38,6 @@ export default {
 .createButton {
   display: inline-flex;
   align-items: center;
-  padding: 0 1.6rem;
-  border: none;
-  border-radius: 3px;
-  font-size: 1.2rem;
-  font-weight: 500;
-  line-height: 3.2rem;
-  text-transform: uppercase;
-  color: #fff;
-  background-color: var(--primary-color);
-  cursor: pointer;
 }
 
 .createButton img {
