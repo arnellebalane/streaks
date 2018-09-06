@@ -39,7 +39,7 @@ export default {
       const left = (daySquareSize + daySquareMargin) * month.offset;
 
       return {
-        left: left + 'px'
+        left: left + "px"
       };
     }
   }
