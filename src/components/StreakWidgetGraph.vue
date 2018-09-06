@@ -1,19 +1,11 @@
 <template>
   <section :class="$style.graph">
     <div :class="[$style.axis, $style.monthsAxis]">
-      <span>Jan</span>
-      <span>Feb</span>
-      <span>Mar</span>
-      <span>Apr</span>
-      <span>May</span>
-      <span>Jun</span>
-      <span>Jul</span>
-      <span>Aug</span>
-      <span>Sep</span>
-      <span>Oct</span>
-      <span>Nov</span>
-      <span>Dec</span>
+      <span v-for="month in months" :key="month.offset">
+        {{month.label}}
+      </span>
     </div>
+
     <div :class="[$style.axis, $style.daysAxis]">
       <span>Mon</span>
       <span>Wed</span>
@@ -23,8 +15,12 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
-  name: "StreakWidgetGraph"
+  name: "StreakWidgetGraph",
+
+  computed: mapState("streaks", ["months"])
 };
 </script>
 
