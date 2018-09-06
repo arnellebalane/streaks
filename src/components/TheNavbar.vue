@@ -3,7 +3,11 @@
     <div :class="[$shared.wrapper, $style.wrapper]">
       <h1>Your Streaks</h1>
 
-      <BaseButton :class="$style.createButton" square>
+      <BaseButton
+        :class="$style.createButton"
+        @click="setIsCreatingStreak(true)"
+        square
+      >
         <img src="../assets/plus.png" alt="">
       </BaseButton>
     </div>
@@ -25,7 +29,10 @@ export default {
     this.setNavbarHeight(this.$el.getBoundingClientRect().height);
   },
 
-  methods: mapMutations(["setNavbarHeight"])
+  methods: {
+    ...mapMutations(["setNavbarHeight"]),
+    ...mapMutations("streaks", ["setIsCreatingStreak"])
+  }
 };
 </script>
 
