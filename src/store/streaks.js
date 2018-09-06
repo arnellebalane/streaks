@@ -29,10 +29,10 @@ function getMonths(weeks) {
 const today = new Date();
 const weeks = getWeeks(today);
 const months = getMonths(weeks);
-console.log(weeks);
-console.log(months);
 
-const state = {};
+const state = {
+  months
+};
 
 export default {
   namespaced: true,
