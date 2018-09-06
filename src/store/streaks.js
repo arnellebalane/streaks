@@ -44,6 +44,8 @@ const actions = {
     const tx = db.transaction("streaks", "readonly");
     const results = await tx.objectStore("streaks").getAll();
 
+    results.sort((a, b) =>
+      a.createdAt.getTime() - b.createdAt.getTime());
     results.forEach(result => commit("addStreak", result));
   },
 
