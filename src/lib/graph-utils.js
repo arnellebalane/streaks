@@ -1,11 +1,9 @@
-import {
-  addDays,
-  subWeeks,
-  startOfWeek,
-  isSameMonth,
-  isFuture,
-  format
-} from "date-fns";
+import addDays from "date-fns/add_days";
+import subWeeks from "date-fns/sub_weeks";
+import startOfWeek from "date-fns/start_of_week";
+import isSameMonth from "date-fns/is_same_month";
+import isFuture from "date-fns/is_future";
+import format from "date-fns/format";
 
 const WEEKS_IN_YEAR = 52;
 const DAYS_IN_WEEK = 7;
