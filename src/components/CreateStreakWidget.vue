@@ -69,7 +69,6 @@ export default {
   border: none;
   font-size: 1.8rem;
   font-weight: 500;
-  line-height: 2.4rem;
   outline: none;
 }
 
