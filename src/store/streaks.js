@@ -21,7 +21,7 @@ function getWeeks(today) {
 function getMonths(weeks) {
   return weeks.reduce((months, [weekStart], i) => {
     return !isSameMonth(weekStart, subWeeks(weekStart, 1))
-      ? [...months, [format(weekStart, "MMM"), i]]
+      ? [...months, {label: format(weekStart, "MMM"), offset: i}]
       : months;
   }, []);
 }
