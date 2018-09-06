@@ -1,6 +1,6 @@
 <template>
   <button
-    :class="$style.button"
+    :class="componentClasses"
     v-bind="$attrs"
     v-on="$listeners"
   >
@@ -10,7 +10,20 @@
 
 <script>
 export default {
-  name: "BaseButton"
+  name: "BaseButton",
+
+  props: {
+    square: Boolean
+  },
+
+  computed: {
+    componentClasses() {
+      return {
+        [this.$style.button]: true,
+        [this.$style.square]: this.square
+      };
+    }
+  }
 };
 </script>
 
@@ -26,5 +39,14 @@ export default {
   color: #fff;
   background-color: var(--primary-color);
   cursor: pointer;
+}
+
+.square {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(3.2 / 1.2 * 1em);
+  height: calc(3.2 / 1.2 * 1em);
+  padding: 0;
 }
 </style>
