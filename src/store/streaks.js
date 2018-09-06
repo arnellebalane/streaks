@@ -21,6 +21,12 @@ const state = {
   streaks: []
 };
 
+const mutations = {
+  addStreak(state, payload) {
+    state.streaks = [payload, ...state.streaks];
+  }
+};
+
 const actions = {
   async createStreak({ commit }, payload) {
     const data = {
@@ -34,11 +40,14 @@ const actions = {
     const tx = db.transaction("streaks", "readwrite");
     tx.objectStore("streaks").put(data);
     await tx.complete;
+
+    commit("addStreak", data);
   }
 };
 
 export default {
   namespaced: true,
   state,
+  mutations,
   actions
 };
