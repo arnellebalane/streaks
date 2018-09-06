@@ -13,14 +13,16 @@ export default {
   name: "BaseButton",
 
   props: {
-    square: Boolean
+    square: Boolean,
+    outline: Boolean
   },
 
   computed: {
     componentClasses() {
       return {
         [this.$style.button]: true,
-        [this.$style.square]: this.square
+        [this.$style.square]: this.square,
+        [this.$style.outline]: this.outline
       };
     }
   }
@@ -48,5 +50,10 @@ export default {
   width: calc(3.2 / 1.2 * 1em);
   height: calc(3.2 / 1.2 * 1em);
   padding: 0;
+}
+
+.outline {
+  border: 1px solid currentColor;
+  background: none;
 }
 </style>
