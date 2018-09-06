@@ -1,8 +1,8 @@
 <template>
   <div>
-    <p :class="$style.value">{{value}}</p>
-    <small :class="$style.info">{{info}}</small>
-    <p :class="$style.label">{{label}}</p>
+    <p :class="$style.value">{{ value }}</p>
+    <small :class="$style.info">{{ info }}</small>
+    <p :class="$style.label">{{ label }}</p>
   </div>
 </template>
 

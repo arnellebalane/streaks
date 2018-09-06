@@ -6,7 +6,7 @@
         :key="month.offset"
         :style="getMonthLabelStyles(month)"
       >
-        {{month.label}}
+        {{ month.label }}
       </span>
     </div>
 
