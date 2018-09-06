@@ -21,6 +21,12 @@ const state = {
   streaks: []
 };
 
+const getters = {
+  hasStreaks(state) {
+    return state.streaks.length > 0;
+  }
+};
+
 const mutations = {
   addStreak(state, payload) {
     state.streaks = [payload, ...state.streaks];
@@ -56,6 +62,7 @@ const actions = {
 export default {
   namespaced: true,
   state,
+  getters,
   mutations,
   actions
 };
