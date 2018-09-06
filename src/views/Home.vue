@@ -4,7 +4,7 @@
 
     <div :class="$shared.wrapper">
       <EmptyState
-        v-if="!hasStreaks"
+        v-if="!hasStreaks && !isCreatingStreak"
         :class="$style.feedWidget"
       />
 
