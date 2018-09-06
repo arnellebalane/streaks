@@ -6,6 +6,8 @@ import "./register-sw";
 
 Vue.config.productionTip = false;
 
+store.dispatch("streaks/fetchStreaks");
+
 new Vue({
   router,
   store,
