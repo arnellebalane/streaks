@@ -5,6 +5,7 @@
 
       <BaseButton
         :class="$style.createButton"
+        v-if="hasStreaks"
         @click="setIsCreatingStreak(true)"
         square
       >
@@ -15,7 +16,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 import BaseButton from "./BaseButton.vue";
 
 export default {
@@ -24,6 +25,8 @@ export default {
   components: {
     BaseButton
   },
+
+  computed: mapGetters("streaks", ["hasStreaks"]),
 
   mounted() {
     this.setNavbarHeight(this.$el.getBoundingClientRect().height);
