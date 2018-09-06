@@ -28,6 +28,14 @@ const mutations = {
 };
 
 const actions = {
+  async fetchStreaks({ commit }) {
+    const db = await indexedDB;
+    const tx = db.transaction("streaks", "readonly");
+    const results = await tx.objectStore("streaks").getAll();
+
+    results.forEach(result => commit("addStreak", result));
+  },
+
   async createStreak({ commit }, payload) {
     const data = {
       id: shortid.generate(),
