@@ -1,6 +1,6 @@
 <template>
   <header :class="$style.header">
-    <h1 :class="$style.label">Github Commits</h1>
+    <h1 :class="$style.label">{{ data.name }}</h1>
 
     <button :class="$style.settings">
       <img src="../assets/settings.png" alt="">
@@ -10,7 +10,14 @@
 
 <script>
 export default {
-  name: "StreakWidgetHeader"
+  name: "StreakWidgetHeader",
+
+  props: {
+    data: {
+      type: Object,
+      required: true
+    }
+  }
 };
 </script>
 

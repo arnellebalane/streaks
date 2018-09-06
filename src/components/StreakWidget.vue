@@ -1,6 +1,6 @@
 <template>
   <article :class="$style.streakWidget">
-    <StreakWidgetHeader />
+    <StreakWidgetHeader :data="data" />
     <StreakWidgetGraph />
 
     <section :class="$style.stats">
@@ -38,6 +38,13 @@ export default {
     StreakWidgetGraph,
     StreakWidgetStat,
     StreakWidgetLegend
+  },
+
+  props: {
+    data: {
+      type: Object,
+      required: true
+    }
   }
 };
 </script>
