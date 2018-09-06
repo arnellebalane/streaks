@@ -1,7 +1,11 @@
 <template>
   <section :class="$style.graph">
     <div :class="[$style.axis, $style.monthsAxis]">
-      <span v-for="month in months" :key="month.offset">
+      <span
+        v-for="month in months"
+        :key="month.offset"
+        :style="getMonthLabelStyles(month)"
+      >
         {{month.label}}
       </span>
     </div>
@@ -26,7 +30,19 @@ import { mapState } from "vuex";
 export default {
   name: "StreakWidgetGraph",
 
-  computed: mapState("streaks", ["months", "weeks"])
+  computed: mapState("streaks", ["months", "weeks"]),
+
+  methods: {
+    getMonthLabelStyles(month) {
+      const daySquareSize = 12;
+      const daySquareMargin = 1;
+      const left = (daySquareSize + daySquareMargin) * month.offset;
+
+      return {
+        left: left + 'px'
+      };
+    }
+  }
 };
 </script>
 
@@ -44,10 +60,15 @@ export default {
 
 .monthsAxis {
   width: 100%;
+  height: 1em;
   display: flex;
-  justify-content: space-between;
-  padding-left: 3.2rem;
+  margin-left: 3.2rem;
   margin-bottom: 8px;
+  position: relative;
+}
+
+.monthsAxis span {
+  position: absolute;
 }
 
 .daysAxis {
