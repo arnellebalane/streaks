@@ -3,8 +3,16 @@
     <TheNavbar />
 
     <div :class="$shared.wrapper">
-      <EmptyState :class="$style.feedWidget" />
-      <CreateStreakWidget :class="$style.feedWidget" />
+      <EmptyState
+        v-if="!hasStreaks"
+        :class="$style.feedWidget"
+      />
+
+      <CreateStreakWidget
+        v-if="isCreating"
+        :class="$style.feedWidget"
+      />
+
       <StreakWidget
         v-for="streak in streaks"
         :key="streak.id"
@@ -16,7 +24,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 import TheNavbar from "@/components/TheNavbar.vue";
 import EmptyState from "@/components/EmptyState.vue";
 import StreakWidget from "@/components/StreakWidget.vue";
@@ -32,7 +40,16 @@ export default {
     CreateStreakWidget
   },
 
-  computed: mapState("streaks", ["streaks"])
+  data() {
+    return {
+      isCreating: false
+    };
+  },
+
+  computed: {
+    ...mapState("streaks", ["streaks"]),
+    ...mapGetters("streaks", ["hasStreaks"])
+  }
 };
 </script>
 
