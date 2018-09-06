@@ -1,4 +1,10 @@
-import { subWeeks, startOfWeek, endOfWeek, isSameMonth, format } from "date-fns";
+import {
+  subWeeks,
+  startOfWeek,
+  endOfWeek,
+  isSameMonth,
+  format
+} from "date-fns";
 
 const WEEKS_IN_YEAR = 52;
 
@@ -13,11 +19,10 @@ function getWeeks(today) {
 }
 
 function getMonths(weeks) {
-  return weeks.reduce((months, week, i) => {
-    if (!isSameMonth(week[0], subWeeks(week[0], 1))) {
-      return [...months, [format(week[0], "MMM"), i]];
-    }
-    return months;
+  return weeks.reduce((months, [weekStart], i) => {
+    return !isSameMonth(weekStart, subWeeks(weekStart, 1))
+      ? [...months, [format(weekStart, "MMM"), i]]
+      : months;
   }, []);
 }
 
