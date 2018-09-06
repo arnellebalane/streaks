@@ -27,14 +27,17 @@ export default {
   font-size: 1.2rem;
   font-weight: 300;
   color: #888;
+  width: 3.9rem;
 }
 
 .label:first-of-type {
-  margin-right: 8px;
+  padding-right: 8px;
+  text-align: right;
 }
 
 .label:last-of-type {
-  margin-left: 8px;
+  padding-left: 8px;
+  text-align: left;
 }
 
 .step {
