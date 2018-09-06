@@ -2,7 +2,10 @@
   <div :class="$style.emptyState">
     <p>You don't seem to be tracking any streaks yet.</p>
 
-    <BaseButton :class="$style.createButton">
+    <BaseButton
+      :class="$style.createButton"
+      @click="setIsCreatingStreak(true)"
+    >
       <img src="../assets/plus.png" alt="">
       Create Streak
     </BaseButton>
@@ -10,6 +13,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 import BaseButton from "./BaseButton.vue";
 
 export default {
@@ -17,7 +21,9 @@ export default {
 
   components: {
     BaseButton
-  }
+  },
+
+  methods: mapMutations("streaks", ["setIsCreatingStreak"])
 };
 </script>
 
