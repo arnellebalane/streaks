@@ -51,12 +51,11 @@ export default {
 }
 
 .daysAxis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 3.2rem;
-}
-
-.daysAxis span {
-  display: block;
-  margin: 1.4rem 0;
+  padding: 1.3rem 0;
 }
 
 .weeksContainer {
