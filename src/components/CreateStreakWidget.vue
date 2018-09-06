@@ -7,15 +7,23 @@
         placeholder="Enter streak label"
         v-model.trim="label"
       >
-      <BaseButton :class="$style.button">
+
+      <BaseButton :class="[$style.button, $style.saveButton]">
         Save
+      </BaseButton>
+      <BaseButton
+        type="button"
+        :class="[$style.button, $style.cancelButton]"
+        @click="setIsCreatingStreak(false)"
+      >
+        Cancel
       </BaseButton>
     </header>
   </form>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapMutations, mapActions } from "vuex";
 import BaseButton from "./BaseButton.vue";
 
 export default {
@@ -32,11 +40,12 @@ export default {
   },
 
   methods: {
+    ...mapMutations("streaks", ["setIsCreatingStreak"]),
     ...mapActions("streaks", ["createStreak"]),
 
     async onSubmit() {
       await this.createStreak({ name: this.label });
-      this.label = "";
+      this.setIsCreatingStreak(false);
     }
   }
 };
@@ -73,9 +82,18 @@ export default {
 }
 
 .button {
-  margin-left: 2.4rem;
   font-size: 1rem;
   font-weight: 700;
   line-height: 2.4rem;
+}
+
+.saveButton {
+  margin-left: 2.4rem;
+}
+
+.cancelButton {
+  margin-left: 4px;
+  color: #888;
+  background-color: #f0f0f0;
 }
 </style>
