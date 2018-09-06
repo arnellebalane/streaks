@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import BaseButton from "./BaseButton.vue";
 
 export default {
@@ -31,9 +32,11 @@ export default {
   },
 
   methods: {
-    onSubmit() {
-      // eslint-disable-next-line
-      console.log("Creating streak", this.label);
+    ...mapActions("streaks", ["createStreak"]),
+
+    async onSubmit() {
+      await this.createStreak({ name: this.label });
+      this.label = "";
     }
   }
 };
