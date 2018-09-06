@@ -9,7 +9,7 @@
       />
 
       <CreateStreakWidget
-        v-if="isCreating"
+        v-if="isCreatingStreak"
         :class="$style.feedWidget"
       />
 
@@ -40,14 +40,8 @@ export default {
     CreateStreakWidget
   },
 
-  data() {
-    return {
-      isCreating: false
-    };
-  },
-
   computed: {
-    ...mapState("streaks", ["streaks"]),
+    ...mapState("streaks", ["streaks", "isCreatingStreak"]),
     ...mapGetters("streaks", ["hasStreaks"])
   }
 };

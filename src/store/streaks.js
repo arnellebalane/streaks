@@ -18,7 +18,8 @@ const indexedDB = idb.open("streaks", 1, upgradeDB => {
 const state = {
   weeks,
   months,
-  streaks: []
+  streaks: [],
+  isCreatingStreak: false
 };
 
 const getters = {
@@ -30,6 +31,10 @@ const getters = {
 const mutations = {
   addStreak(state, payload) {
     state.streaks = [payload, ...state.streaks];
+  },
+
+  setIsCreatingStreak(state, payload) {
+    state.isCreatingStreak = payload;
   }
 };
 
