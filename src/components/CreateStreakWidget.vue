@@ -6,6 +6,7 @@
         type="text"
         placeholder="Enter streak label"
         v-model.trim="label"
+        required
       >
 
       <BaseButton :class="[$style.button, $style.saveButton]">
