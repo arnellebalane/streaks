@@ -32,7 +32,7 @@ function getWeeks(today) {
 
 function getMonths(weeks) {
   return weeks.reduce((months, [weekStart], i) => {
-    return !isSameMonth(weekStart, subWeeks(weekStart, 1))
+    return !isSameMonth(weekStart, subWeeks(weekStart, 1)) && i < WEEKS_IN_YEAR - 1
       ? [...months, { label: format(weekStart, "MMM"), offset: i }]
       : months;
   }, []);
