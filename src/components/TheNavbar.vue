@@ -8,8 +8,9 @@
         v-if="hasStreaks"
         @click="setIsCreatingStreak(true)"
         square
+        outline
       >
-        <img src="../assets/plus.png" alt="">
+        <img src="../assets/plus-blue.png" alt="">
       </BaseButton>
     </div>
   </header>
@@ -63,9 +64,10 @@ export default {
 .createButton {
   margin-left: auto;
   font-size: 9px;
+  color: var(--primary-color);
 }
 
 .createButton img {
-  width: 1.4rem;
+  width: 1.8rem;
 }
 </style>
