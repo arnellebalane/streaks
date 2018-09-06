@@ -4,6 +4,7 @@
 
     <div :class="$shared.wrapper">
       <EmptyState :class="$style.feedWidget" />
+      <CreateStreakWidget :class="$style.feedWidget" />
       <StreakWidget :class="$style.feedWidget" />
     </div>
   </div>
@@ -13,6 +14,7 @@
 import TheNavbar from "@/components/TheNavbar.vue";
 import EmptyState from "@/components/EmptyState.vue";
 import StreakWidget from "@/components/StreakWidget.vue";
+import CreateStreakWidget from "@/components/CreateStreakWidget.vue";
 
 export default {
   name: "Home",
@@ -20,7 +22,8 @@ export default {
   components: {
     TheNavbar,
     EmptyState,
-    StreakWidget
+    StreakWidget,
+    CreateStreakWidget
   }
 };
 </script>
