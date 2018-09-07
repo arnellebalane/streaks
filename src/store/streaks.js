@@ -58,6 +58,17 @@ const actions = {
     results.forEach(result => commit("addStreak", result));
   },
 
+  async editStreak({ commit }, { streakKey, streakData }) {
+    const db = await indexedDB;
+    const tx = db.transaction("streaks", "readwrite");
+    const streak = await tx.objectStore("streaks").get(streakKey);
+
+    const updatedStreak = { ...streak, ...streakData };
+    await tx.objectStore("streaks").put(updatedStreak);
+
+    commit("updateStreak", { streakKey, streakData: updatedStreak });
+  },
+
   async createStreak({ commit }, streakData) {
     const data = {
       id: nanoid(),
