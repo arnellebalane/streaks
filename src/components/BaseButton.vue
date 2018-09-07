@@ -14,7 +14,8 @@ export default {
 
   props: {
     square: Boolean,
-    outline: Boolean
+    outline: Boolean,
+    loading: Boolean
   },
 
   computed: {
@@ -22,7 +23,8 @@ export default {
       return {
         [this.$style.button]: true,
         [this.$style.square]: this.square,
-        [this.$style.outline]: this.outline
+        [this.$style.outline]: this.outline,
+        [this.$style.loading]: this.loading
       };
     }
   }
@@ -43,6 +45,11 @@ export default {
   cursor: pointer;
 }
 
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .square {
   display: flex;
   justify-content: center;
@@ -55,5 +62,34 @@ export default {
 .outline {
   border: 1px solid currentColor;
   background: none;
+}
+
+.loading {
+  position: relative;
+  text-indent: -100vw;
+}
+
+.loading::before {
+  content: "";
+  position: absolute;
+  top: calc(50% - 1em / 2);
+  left: calc(50% - 1em / 2);
+  width: 1em;
+  height: 1em;
+  border: 1px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  opacity: 0.75;
+  animation: rotate 500ms linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 </style>
