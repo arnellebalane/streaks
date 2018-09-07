@@ -35,9 +35,12 @@ const mutations = {
   },
 
   updateStreak(state, { streakKey, streakData }) {
-    state.streaks = state.streaks.map(
-      streak => (streak.id === streakKey ? streakData : streak)
-    );
+    state.streaks = state.streaks.map(streak => {
+      if (streak.id === streakKey) {
+        return { ...streak, ...streakData };
+      }
+      return streak;
+    });
   },
 
   setIsCreatingStreak(state, isCreatingStreak) {
