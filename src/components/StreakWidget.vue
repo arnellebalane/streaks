@@ -55,10 +55,16 @@
     </section>
 
     <div
-      :class="$style.menuModal"
+      :class="$style.overlay"
       v-if="isMenuOpen"
       @click="isMenuOpen = false"
     ></div>
+    <StreakConfirmDelete
+      v-if="isDeleting"
+      :class="$style.overlay"
+      @confirm="deleteStreak(data.id)"
+      @cancel="isDeleting = false"
+    />
   </article>
 </template>
 
@@ -71,12 +77,15 @@ import StreakWidgetLegend from "./StreakWidgetLegend.vue";
 
 const StreakForm = () =>
   import(/* webpackChunkName: "streak-form" */ "./StreakForm.vue");
+const StreakConfirmDelete = () =>
+  import(/* webpackChunkName: "streak-confirm-delete" */ "./StreakConfirmDelete.vue");
 
 export default {
   name: "StreakWidget",
 
   components: {
     StreakForm,
+    StreakConfirmDelete,
     StreakWidgetHeader,
     StreakWidgetGraph,
     StreakWidgetStat,
@@ -106,7 +115,8 @@ export default {
     ...mapActions("streaks", [
       "incrementStreak",
       "decrementStreak",
-      "editStreak"
+      "editStreak",
+      "deleteStreak"
     ]),
 
     onMenuEdit() {
@@ -199,7 +209,7 @@ export default {
   background-color: var(--primary-color);
 }
 
-.menuModal {
+.overlay {
   border-radius: 3px;
   position: absolute;
   top: 0;
