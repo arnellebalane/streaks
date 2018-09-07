@@ -47,8 +47,8 @@ export default {
 }
 
 .cancel {
-  margin-top: 8px;
-  font-size: 1.2rem;
+  margin-top: 1.6rem;
+  font-size: 1.4rem;
   text-decoration: none;
   opacity: 0.75;
 }
