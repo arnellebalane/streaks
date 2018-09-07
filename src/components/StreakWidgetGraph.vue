@@ -30,7 +30,20 @@ import { mapState } from "vuex";
 export default {
   name: "StreakWidgetGraph",
 
-  computed: mapState("streaks", ["months", "weeks"]),
+  props: {
+    data: {
+      type: Object,
+      required: true
+    }
+  },
+
+  computed: {
+    ...mapState("streaks", ["months", "weeks"]),
+
+    highestValue() {
+      return Math.max(...Object.values({ ...this.data.values }));
+    }
+  },
 
   methods: {
     getMonthLabelStyles(month) {

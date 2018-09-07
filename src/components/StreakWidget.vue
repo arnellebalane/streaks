@@ -16,7 +16,7 @@
       @cancel="onEditCancel"
     />
 
-    <StreakWidgetGraph />
+    <StreakWidgetGraph :data="data" />
 
     <section :class="$style.stats">
       <StreakWidgetStat
