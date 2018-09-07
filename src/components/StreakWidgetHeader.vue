@@ -7,7 +7,7 @@
     </button>
 
     <nav :class="$style.menu" v-if="isMenuOpen">
-      <a href="#" @click.prevent="edit">Edit Streak</a>
+      <a href="#" @click.prevent="$emit('edit')">Edit Streak</a>
     </nav>
   </header>
 </template>
@@ -32,9 +32,7 @@ export default {
   methods: {
     openMenu() {
       this.$parent.isMenuOpen = true;
-    },
-
-    edit() {}
+    }
   }
 };
 </script>
@@ -43,7 +41,6 @@ export default {
 .header {
   display: flex;
   align-items: center;
-  margin-bottom: 2.4rem;
   position: relative;
 }
 
