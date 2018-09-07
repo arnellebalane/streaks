@@ -29,12 +29,12 @@ const getters = {
 };
 
 const mutations = {
-  addStreak(state, payload) {
-    state.streaks = [payload, ...state.streaks];
+  addStreak(state, streak) {
+    state.streaks = [streak, ...state.streaks];
   },
 
-  setIsCreatingStreak(state, payload) {
-    state.isCreatingStreak = payload;
+  setIsCreatingStreak(state, isCreatingStreak) {
+    state.isCreatingStreak = isCreatingStreak;
   }
 };
 
@@ -48,12 +48,12 @@ const actions = {
     results.forEach(result => commit("addStreak", result));
   },
 
-  async createStreak({ commit }, payload) {
+  async createStreak({ commit }, streakData) {
     const data = {
       id: nanoid(),
       createdAt: new Date(),
       createdAtTz: Intl.DateTimeFormat().resolvedOptions().timeZone,
-      ...payload
+      ...streakData
     };
 
     const db = await indexedDB;
