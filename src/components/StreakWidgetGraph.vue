@@ -18,7 +18,12 @@
 
     <div :class="$style.weeksContainer">
       <div :class="$style.week" v-for="(week, i) in weeks" :key="i">
-        <div :class="$style.day" v-for="(day, j) in week" :key="j"></div>
+        <StreakWidgetGraphCell
+          v-for="(date, j) in week"
+          :key="j"
+          :class="$style.day"
+          :value="getGraphCellValue(date)"
+        />
       </div>
     </div>
   </section>
@@ -26,9 +31,15 @@
 
 <script>
 import { mapState } from "vuex";
+import format from "date-fns/format";
+import StreakWidgetGraphCell from "./StreakWidgetGraphCell.vue";
 
 export default {
   name: "StreakWidgetGraph",
+
+  components: {
+    StreakWidgetGraphCell
+  },
 
   props: {
     data: {
@@ -54,6 +65,11 @@ export default {
       return {
         left: left + "px"
       };
+    },
+
+    getGraphCellValue(date) {
+      const key = format(date, "YYYY-MM-DD");
+      return this.data.values[key] || 0;
     }
   }
 };
@@ -104,12 +120,6 @@ export default {
 
 .week:not(:last-child) {
   margin-right: 1px;
-}
-
-.day {
-  width: 1.2rem;
-  height: 1.2rem;
-  background-color: #f0f0f0;
 }
 
 .day:not(:last-child) {
