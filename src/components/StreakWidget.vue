@@ -38,6 +38,12 @@
         </div>
       </div>
     </section>
+
+    <div
+      :class="$style.menuModal"
+      v-if="isMenuOpen"
+      @click="isMenuOpen = false"
+    ></div>
   </article>
 </template>
 
@@ -65,6 +71,12 @@ export default {
     }
   },
 
+  data() {
+    return {
+      isMenuOpen: false
+    };
+  },
+
   methods: mapActions("streaks", ["incrementStreak", "decrementStreak"])
 };
 </script>
@@ -73,6 +85,7 @@ export default {
 .streakWidget {
   padding: 2.4rem;
   border-radius: 3px;
+  position: relative;
   background-color: #fff;
 }
 
@@ -122,5 +135,15 @@ export default {
 .increment {
   width: 7.5rem;
   background-color: var(--primary-color);
+}
+
+.menuModal {
+  border-radius: 3px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.075);
 }
 </style>
