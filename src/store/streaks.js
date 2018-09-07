@@ -43,6 +43,10 @@ const mutations = {
     });
   },
 
+  deleteStreak(state, streakKey) {
+    state.streaks = state.streaks.filter(streak => streak.id !== streakKey);
+  },
+
   setIsCreatingStreak(state, isCreatingStreak) {
     state.isCreatingStreak = isCreatingStreak;
   }
@@ -82,6 +86,14 @@ const actions = {
     await tx.objectStore("streaks").put(updatedStreak);
 
     commit("updateStreak", { streakKey, streakData: updatedStreak });
+  },
+
+  async deleteStreak({ commit }, streakKey) {
+    const db = await indexedDB;
+    const tx = db.transaction("streaks", "readwrite");
+    await tx.objectStore("streaks").delete(streakKey);
+
+    commit("deleteStreak", streakKey);
   },
 
   async updateStreakValue({ commit }, { streakKey, delta }) {
