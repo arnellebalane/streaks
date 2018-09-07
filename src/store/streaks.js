@@ -1,5 +1,6 @@
 import idb from "idb";
 import nanoid from "nanoid";
+import format from "date-fns/format";
 import { getWeeks, getMonths } from "@/lib/graph-utils";
 
 const today = new Date();
@@ -33,6 +34,12 @@ const mutations = {
     state.streaks = [streak, ...state.streaks];
   },
 
+  updateStreak(state, { streakKey, streakData }) {
+    state.streaks = state.streaks.map(
+      streak => (streak.id === streakKey ? streakData : streak)
+    );
+  },
+
   setIsCreatingStreak(state, isCreatingStreak) {
     state.isCreatingStreak = isCreatingStreak;
   }
@@ -58,10 +65,31 @@ const actions = {
 
     const db = await indexedDB;
     const tx = db.transaction("streaks", "readwrite");
-    tx.objectStore("streaks").put(data);
-    await tx.complete;
+    await tx.objectStore("streaks").put(data);
 
     commit("addStreak", data);
+  },
+
+  async updateStreakValue({ commit }, { streakKey, delta }) {
+    const db = await indexedDB;
+    const tx = db.transaction("streaks", "readwrite");
+    const streak = await tx.objectStore("streaks").get(streakKey);
+
+    const today = format(new Date(), "YYYY-MM-DD");
+    streak.values = streak.values || {};
+    streak.values[today] = streak.values[today] || 0;
+    streak.values[today] = Math.max(streak.values[today] + delta, 0);
+    await tx.objectStore("streaks").put(streak);
+
+    commit("updateStreak", { streakKey, streakData: streak });
+  },
+
+  async incrementStreak({ dispatch }, streakKey) {
+    await dispatch("updateStreakValue", { streakKey, delta: 1 });
+  },
+
+  async decrementStreak({ dispatch }, streakKey) {
+    await dispatch("updateStreakValue", { streakKey, delta: -1 });
   }
 };
 
