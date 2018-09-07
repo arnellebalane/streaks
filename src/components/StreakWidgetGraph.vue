@@ -69,6 +69,9 @@ export default {
 
     getGraphCellValue(date) {
       const key = format(date, "YYYY-MM-DD");
+      if (!this.data.values) {
+        return 0;
+      }
       return this.data.values[key] || 0;
     }
   }
