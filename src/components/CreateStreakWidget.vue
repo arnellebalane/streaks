@@ -1,47 +1,29 @@
 <template>
-  <form :class="$style.streakWidget" @submit.prevent="onSubmit">
-    <header :class="$style.header">
-      <input
-        :class="$style.input"
-        type="text"
-        placeholder="Enter streak label"
-        v-model.trim="label"
-        required
-      >
-
-      <BaseButton
-        :class="[$style.button, $style.saveButton]"
-        :loading="isLoading"
-        :disabled="isLoading"
-      >
-        Save
-      </BaseButton>
-      <BaseButton
-        type="button"
-        :class="[$style.button, $style.cancelButton]"
-        :disabled="isLoading"
-        @click="setIsCreatingStreak(false)"
-      >
-        Cancel
-      </BaseButton>
-    </header>
-  </form>
+  <StreakForm
+    :class="$style.streakWidget"
+    :loading="isLoading"
+    v-model="streakData"
+    @submit="onSubmit"
+    @cancel="setIsCreatingStreak(false)"
+  />
 </template>
 
 <script>
 import { mapMutations, mapActions } from "vuex";
-import BaseButton from "./BaseButton.vue";
+import StreakForm from "./StreakForm.vue";
 
 export default {
   name: "CreateStreakWidget",
 
   components: {
-    BaseButton
+    StreakForm
   },
 
   data() {
     return {
-      label: "",
+      streakData: {
+        name: ""
+      },
       isLoading: false
     };
   },
@@ -52,7 +34,7 @@ export default {
 
     async onSubmit() {
       this.isLoading = true;
-      await this.createStreak({ name: this.label });
+      await this.createStreak(this.streakData);
       this.isLoading = false;
 
       this.setIsCreatingStreak(false);
@@ -66,43 +48,5 @@ export default {
   padding: 2.4rem;
   border-radius: 3px;
   background-color: #fff;
-}
-
-.header {
-  display: flex;
-  align-items: center;
-}
-
-.input {
-  flex-grow: 1;
-  padding: 0;
-  border: none;
-  font-size: 1.8rem;
-  font-weight: 500;
-  outline: none;
-}
-
-.input::-webkit-input-placeholder {
-  color: #ccc;
-}
-
-.input:focus::-webkit-input-placeholder {
-  color: #aaa;
-}
-
-.button {
-  font-size: 1rem;
-  font-weight: 700;
-  line-height: 2.4rem;
-}
-
-.saveButton {
-  margin-left: 2.4rem;
-}
-
-.cancelButton {
-  margin-left: 4px;
-  color: #888;
-  background-color: #f0f0f0;
 }
 </style>
