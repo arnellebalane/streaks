@@ -28,7 +28,9 @@ import { mapState, mapGetters } from "vuex";
 import TheNavbar from "@/components/TheNavbar.vue";
 import EmptyState from "@/components/EmptyState.vue";
 import StreakWidget from "@/components/StreakWidget.vue";
-import CreateStreakWidget from "@/components/CreateStreakWidget.vue";
+
+const CreateStreakWidget = () =>
+  import(/* webpackChunkName: "create-streak-widget" */ "@/components/CreateStreakWidget.vue");
 
 export default {
   name: "Home",
