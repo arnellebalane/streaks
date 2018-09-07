@@ -23,10 +23,16 @@
         <StreakWidgetLegend />
 
         <div :class="$style.actions">
-          <button :class="[$style.action, $style.decrement]">
+          <button
+            :class="[$style.action, $style.decrement]"
+            @click="decrementStreak(data.id)"
+          >
             <img src="../assets/chevron-down.png" alt="">
           </button>
-          <button :class="[$style.action, $style.increment]">
+          <button
+            :class="[$style.action, $style.increment]"
+            @click="incrementStreak(data.id)"
+          >
             <img src="../assets/chevron-up.png" alt="">
           </button>
         </div>
@@ -36,6 +42,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import StreakWidgetHeader from "./StreakWidgetHeader.vue";
 import StreakWidgetGraph from "./StreakWidgetGraph.vue";
 import StreakWidgetStat from "./StreakWidgetStat.vue";
@@ -56,7 +63,9 @@ export default {
       type: Object,
       required: true
     }
-  }
+  },
+
+  methods: mapActions("streaks", ["incrementStreak", "decrementStreak"])
 };
 </script>
 
