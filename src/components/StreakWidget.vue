@@ -1,6 +1,20 @@
 <template>
   <article :class="$style.streakWidget">
-    <StreakWidgetHeader :data="data" />
+    <StreakWidgetHeader
+      v-if="!isEditing"
+      :data="data"
+      :class="$style.header"
+      @edit="onMenuEdit"
+    />
+    <StreakForm
+      v-else
+      v-model="streakData"
+      :class="$style.header"
+      :loading="isLoading"
+      @submit="onEditSubmit"
+      @cancel="onEditCancel"
+    />
+
     <StreakWidgetGraph />
 
     <section :class="$style.stats">
@@ -54,10 +68,14 @@ import StreakWidgetGraph from "./StreakWidgetGraph.vue";
 import StreakWidgetStat from "./StreakWidgetStat.vue";
 import StreakWidgetLegend from "./StreakWidgetLegend.vue";
 
+const StreakForm = () =>
+  import(/* webpackChunkName: "streak-form" */ "./StreakForm.vue");
+
 export default {
   name: "StreakWidget",
 
   components: {
+    StreakForm,
     StreakWidgetHeader,
     StreakWidgetGraph,
     StreakWidgetStat,
@@ -73,11 +91,44 @@ export default {
 
   data() {
     return {
-      isMenuOpen: false
+      isMenuOpen: false,
+      isEditing: false,
+      isLoading: false,
+      streakData: {
+        name: this.data.name
+      }
     };
   },
 
-  methods: mapActions("streaks", ["incrementStreak", "decrementStreak"])
+  methods: {
+    ...mapActions("streaks", [
+      "incrementStreak",
+      "decrementStreak",
+      "editStreak"
+    ]),
+
+    onMenuEdit() {
+      this.isMenuOpen = false;
+      this.isEditing = true;
+    },
+
+    async onEditSubmit() {
+      this.isLoading = true;
+      await this.editStreak({
+        streakKey: this.data.id,
+        streakData: this.streakData
+      });
+      this.isLoading = false;
+      this.isEditing = false;
+    },
+
+    onEditCancel() {
+      this.isEditing = false;
+      this.streakData = {
+        name: this.data.name
+      };
+    }
+  }
 };
 </script>
 
@@ -87,6 +138,10 @@ export default {
   border-radius: 3px;
   position: relative;
   background-color: #fff;
+}
+
+.header {
+  margin-bottom: 2.4rem;
 }
 
 .stats {
