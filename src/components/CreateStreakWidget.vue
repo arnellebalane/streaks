@@ -9,12 +9,17 @@
         required
       >
 
-      <BaseButton :class="[$style.button, $style.saveButton]">
+      <BaseButton
+        :class="[$style.button, $style.saveButton]"
+        :loading="isLoading"
+        :disabled="isLoading"
+      >
         Save
       </BaseButton>
       <BaseButton
         type="button"
         :class="[$style.button, $style.cancelButton]"
+        :disabled="isLoading"
         @click="setIsCreatingStreak(false)"
       >
         Cancel
@@ -36,7 +41,8 @@ export default {
 
   data() {
     return {
-      label: ""
+      label: "",
+      isLoading: false
     };
   },
 
@@ -45,7 +51,10 @@ export default {
     ...mapActions("streaks", ["createStreak"]),
 
     async onSubmit() {
+      this.isLoading = true;
       await this.createStreak({ name: this.label });
+      this.isLoading = false;
+
       this.setIsCreatingStreak(false);
     }
   }
