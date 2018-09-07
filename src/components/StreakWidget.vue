@@ -19,7 +19,18 @@
         value="30"
         info="October 29"
       />
-      <StreakWidgetLegend :class="$style.legend" />
+      <div :class="$style.extras">
+        <StreakWidgetLegend />
+
+        <div :class="$style.actions">
+          <button :class="[$style.action, $style.decrement]">
+            <img src="../assets/chevron-down.png" alt="">
+          </button>
+          <button :class="[$style.action, $style.increment]">
+            <img src="../assets/chevron-up.png" alt="">
+          </button>
+        </div>
+      </div>
     </section>
   </article>
 </template>
@@ -67,7 +78,40 @@ export default {
   text-align: center;
 }
 
-.legend {
-  align-self: flex-start;
+.extras {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.actions {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+  margin: 2.4rem -2.4rem -1.2rem 0;
+}
+
+.action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.decrement {
+  width: 5.1rem;
+  margin-right: 1px;
+  background-color: #f0f0f0;
+}
+
+.decrement img {
+  opacity: 0.3;
+}
+
+.increment {
+  width: 7.5rem;
+  background-color: var(--primary-color);
 }
 </style>
