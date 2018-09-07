@@ -2,10 +2,11 @@
   <form @submit.prevent="onSubmit">
     <header :class="$style.header">
       <input
-        :class="$style.input"
+        ref="nameInput"
         type="text"
         placeholder="Enter streak label"
         v-model.trim="value.name"
+        :class="$style.input"
         required
       >
 
@@ -44,6 +45,10 @@ export default {
       required: true
     },
     loading: Boolean
+  },
+
+  mounted() {
+    this.$refs.nameInput.focus();
   },
 
   methods: {
