@@ -1,5 +1,5 @@
 import idb from "idb";
-import shortid from "shortid";
+import nanoid from "nanoid";
 import { getWeeks, getMonths } from "@/lib/graph-utils";
 
 const today = new Date();
@@ -50,7 +50,7 @@ const actions = {
 
   async createStreak({ commit }, payload) {
     const data = {
-      id: shortid.generate(),
+      id: nanoid(),
       createdAt: new Date(),
       createdAtTz: Intl.DateTimeFormat().resolvedOptions().timeZone,
       ...payload
