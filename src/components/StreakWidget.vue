@@ -5,6 +5,7 @@
       :data="data"
       :class="$style.header"
       @edit="onMenuEdit"
+      @delete="onMenuDelete"
     />
     <StreakForm
       v-else
@@ -93,6 +94,7 @@ export default {
     return {
       isMenuOpen: false,
       isEditing: false,
+      isDeleting: false,
       isLoading: false,
       streakData: {
         name: this.data.name
@@ -110,6 +112,11 @@ export default {
     onMenuEdit() {
       this.isMenuOpen = false;
       this.isEditing = true;
+    },
+
+    onMenuDelete() {
+      this.isMenuOpen = false;
+      this.isDeleting = true;
     },
 
     async onEditSubmit() {

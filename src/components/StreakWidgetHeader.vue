@@ -8,6 +8,7 @@
 
     <nav :class="$style.menu" v-if="isMenuOpen">
       <a href="#" @click.prevent="$emit('edit')">Edit Streak</a>
+      <a href="#" @click.prevent="$emit('delete')">Delete Streak</a>
     </nav>
   </header>
 </template>
