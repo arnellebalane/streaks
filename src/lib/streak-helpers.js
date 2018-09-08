@@ -1,4 +1,4 @@
-export function getStreakHighestValue(streak) {
+export function getHighestValue(streak) {
   const highestValue = { value: 0, date: null };
   for (const date in streak.values) {
     const value = streak.values[date];

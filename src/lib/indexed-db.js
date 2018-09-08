@@ -1,5 +1,5 @@
 import idb from "idb";
-import { getStreakHighestValue } from "./streak-helpers";
+import { getHighestValue } from "./streak-helpers";
 
 const indexedDB = idb.open("streaks", 2, async upgradeDB => {
   /* eslint-disable no-fallthrough */
@@ -19,7 +19,7 @@ async function computeStreakHighestValues(upgradeDB) {
 
   const updatedStreaks = streaks.map(streak => {
     return streak.values
-      ? { ...streak, highestValue: getStreakHighestValue(streak) }
+      ? { ...streak, highestValue: getHighestValue(streak) }
       : streak;
   });
 
