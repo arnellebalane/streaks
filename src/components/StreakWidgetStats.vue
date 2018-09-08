@@ -39,10 +39,10 @@ export default {
 
   computed: {
     highestValue() {
-      const highestValue = this.data.highestValue;
+      const { value = 0, date } = this.data.highestValue || {};
       return {
-        value: highestValue ? highestValue.value : 0,
-        info: highestValue ? format(highestValue.date, "MMMM D") : "-"
+        value: value,
+        info: value ? format(date, "MMMM D") : "-"
       };
     },
 
