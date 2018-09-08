@@ -31,8 +31,8 @@
       />
       <StreakWidgetStat
         label="Highest Value"
-        value="30"
-        info="October 29"
+        :value="highestValue.value"
+        :info="highestValue.info"
       />
       <div :class="$style.extras">
         <StreakWidgetLegend />
@@ -70,6 +70,7 @@
 
 <script>
 import { mapActions } from "vuex";
+import format from "date-fns/format";
 import StreakWidgetHeader from "./StreakWidgetHeader.vue";
 import StreakWidgetGraph from "./StreakWidgetGraph.vue";
 import StreakWidgetStat from "./StreakWidgetStat.vue";
@@ -109,6 +110,16 @@ export default {
         name: this.data.name
       }
     };
+  },
+
+  computed: {
+    highestValue() {
+      const highestValue = this.data.highestValue;
+      return {
+        value: highestValue ? highestValue.value : 0,
+        info: highestValue ? format(highestValue.date, "MMMM D") : "-"
+      };
+    }
   },
 
   methods: {
