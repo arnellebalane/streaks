@@ -2,6 +2,7 @@ import nanoid from "nanoid";
 import format from "date-fns/format";
 import { getWeeks, getMonths } from "@/lib/graph-utils";
 import indexedDB from "@/lib/indexed-db";
+import { getStreakHighestValue } from "@/lib/streak-helpers";
 
 const today = new Date();
 const weeks = getWeeks(today);
@@ -64,7 +65,6 @@ const actions = {
     const db = await indexedDB;
     const tx = db.transaction("streaks", "readwrite");
     await tx.objectStore("streaks").put(data);
-
     commit("addStreak", data);
   },
 
@@ -75,7 +75,6 @@ const actions = {
 
     const updatedStreak = { ...streak, ...streakData };
     await tx.objectStore("streaks").put(updatedStreak);
-
     commit("updateStreak", { streakKey, streakData: updatedStreak });
   },
 
@@ -83,7 +82,6 @@ const actions = {
     const db = await indexedDB;
     const tx = db.transaction("streaks", "readwrite");
     await tx.objectStore("streaks").delete(streakKey);
-
     commit("deleteStreak", streakKey);
   },
 
@@ -96,8 +94,11 @@ const actions = {
     streak.values = streak.values || {};
     streak.values[today] = streak.values[today] || 0;
     streak.values[today] = Math.max(streak.values[today] + delta, 0);
-    await tx.objectStore("streaks").put(streak);
 
+    // Update the streak's highest value
+    streak.highestValue = getStreakHighestValue(streak);
+
+    await tx.objectStore("streaks").put(streak);
     commit("updateStreak", { streakKey, streakData: streak });
   },
 
