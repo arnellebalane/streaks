@@ -93,10 +93,14 @@ const actions = {
     const today = format(new Date(), "YYYY-MM-DD");
     streak.values = streak.values || {};
     streak.values[today] = streak.values[today] || 0;
-    streak.values[today] = Math.max(streak.values[today] + delta, 0);
+
+    const updatedValue = streak.values[today] + delta;
+    streak.values[today] = Math.max(updatedValue, 0);
 
     streak.highestValue = getHighestValue(streak);
-    streak.currentStreak = getCurrentStreak(streak);
+    if (updatedValue < 2) {
+      streak.currentStreak = getCurrentStreak(streak);
+    }
 
     await tx.objectStore("streaks").put(streak);
     commit("updateStreak", { streakKey, streakData: streak });
