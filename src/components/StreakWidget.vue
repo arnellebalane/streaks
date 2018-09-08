@@ -18,22 +18,9 @@
 
     <StreakWidgetGraph :data="data" />
 
-    <section :class="$style.stats">
-      <StreakWidgetStat
-        label="Longest Streak"
-        value="100 days"
-        info="April 1 - September 4"
-      />
-      <StreakWidgetStat
-        label="Current Streak"
-        value="50 days"
-        info="April 1 - July 4"
-      />
-      <StreakWidgetStat
-        label="Highest Value"
-        :value="highestValue.value"
-        :info="highestValue.info"
-      />
+    <footer :class="$style.footer">
+      <StreakWidgetStats :class="$style.stats" :data="data" />
+
       <div :class="$style.extras">
         <StreakWidgetLegend />
 
@@ -52,7 +39,7 @@
           </button>
         </div>
       </div>
-    </section>
+    </footer>
 
     <div
       :class="$style.overlay"
@@ -70,10 +57,9 @@
 
 <script>
 import { mapActions } from "vuex";
-import format from "date-fns/format";
 import StreakWidgetHeader from "./StreakWidgetHeader.vue";
 import StreakWidgetGraph from "./StreakWidgetGraph.vue";
-import StreakWidgetStat from "./StreakWidgetStat.vue";
+import StreakWidgetStats from "./StreakWidgetStats.vue";
 import StreakWidgetLegend from "./StreakWidgetLegend.vue";
 
 const StreakForm = () =>
@@ -89,7 +75,7 @@ export default {
     StreakConfirmDelete,
     StreakWidgetHeader,
     StreakWidgetGraph,
-    StreakWidgetStat,
+    StreakWidgetStats,
     StreakWidgetLegend
   },
 
@@ -110,16 +96,6 @@ export default {
         name: this.data.name
       }
     };
-  },
-
-  computed: {
-    highestValue() {
-      const highestValue = this.data.highestValue;
-      return {
-        value: highestValue ? highestValue.value : 0,
-        info: highestValue ? format(highestValue.date, "MMMM D") : "-"
-      };
-    }
   },
 
   methods: {
@@ -172,18 +148,17 @@ export default {
   margin-bottom: 2.4rem;
 }
 
-.stats {
+.footer {
   display: flex;
-  align-items: stretch;
   margin-top: 2.4rem;
 }
 
-.stats > * {
-  flex: 1 0 0;
-  text-align: center;
+.stats {
+  flex: 3 0 0;
 }
 
 .extras {
+  flex: 1 0 0;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
