@@ -7,8 +7,8 @@
     />
     <StreakWidgetStatsItem
       label="Current Streak"
-      value="50 days"
-      info="April 1 - July 4"
+      :value="currentStreak.value"
+      :info="currentStreak.info"
     />
     <StreakWidgetStatsItem
       label="Highest Value"
@@ -20,6 +20,7 @@
 
 <script>
 import format from "date-fns/format";
+import isSameDay from "date-fns/is_same_day";
 import StreakWidgetStatsItem from "./StreakWidgetStatsItem.vue";
 
 export default {
@@ -43,6 +44,25 @@ export default {
         value: highestValue ? highestValue.value : 0,
         info: highestValue ? format(highestValue.date, "MMMM D") : "-"
       };
+    },
+
+    currentStreak() {
+      const { value = 0, startDate, endDate } = this.data.currentStreak || {};
+      const result = {
+        value: `${value} ${value === 1 ? "day" : "days"}`,
+        info: "-"
+      };
+      if (value) {
+        if (isSameDay(startDate, endDate)) {
+          result.info = format(startDate, "MMMM D");
+        } else {
+          result.info = [
+            format(startDate, "MMMM D"),
+            format(endDate, "MMMM D")
+          ].join(" - ");
+        }
+      }
+      return result;
     }
   }
 };
