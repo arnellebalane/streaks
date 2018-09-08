@@ -1,20 +1,11 @@
-import idb from "idb";
 import nanoid from "nanoid";
 import format from "date-fns/format";
 import { getWeeks, getMonths } from "@/lib/graph-utils";
+import indexedDB from "@/lib/indexed-db";
 
 const today = new Date();
 const weeks = getWeeks(today);
 const months = getMonths(weeks);
-
-const indexedDB = idb.open("streaks", 1, upgradeDB => {
-  switch (upgradeDB.oldVersion) {
-    case 0:
-      upgradeDB.createObjectStore("streaks", {
-        keyPath: "id"
-      });
-  }
-});
 
 const state = {
   weeks,
