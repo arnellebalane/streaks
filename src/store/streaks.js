@@ -47,11 +47,16 @@ const mutations = {
 const actions = {
   async fetchStreaks({ commit }) {
     const db = await indexedDB;
-    const tx = db.transaction("streaks", "readonly");
-    const results = await tx.objectStore("streaks").getAll();
+    const tx = db.transaction("streaks", "readwrite");
+    const streaks = await tx.objectStore("streaks").getAll();
 
-    results.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
-    results.forEach(result => commit("addStreak", result));
+    streaks.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
+    streaks.forEach(async streak => {
+      const currentStreak = getCurrentStreak(streak);
+      streak.currentStreak = currentStreak;
+      await tx.objectStore("streaks").put(streak);
+      commit("addStreak", streak);
+    });
   },
 
   async createStreak({ commit }, streakData) {
