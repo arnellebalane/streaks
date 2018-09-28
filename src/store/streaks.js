@@ -51,12 +51,7 @@ const actions = {
     const streaks = await tx.objectStore('streaks').getAll();
 
     streaks.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
-    streaks.forEach(async streak => {
-      const currentStreak = getCurrentStreak(streak);
-      streak.currentStreak = currentStreak;
-      await tx.objectStore('streaks').put(streak);
-      commit('addStreak', streak);
-    });
+    streaks.forEach(streak => commit('addStreak', streak));
   },
 
   async createStreak({commit}, streakData) {
