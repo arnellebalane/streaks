@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import {mapState} from 'vuex';
 import format from 'date-fns/format';
 import StreakWidgetGraphCell from './StreakWidgetGraphCell.vue';
 
@@ -52,7 +52,7 @@ export default {
     ...mapState('streaks', ['months', 'weeks']),
 
     highestValue() {
-      return Math.max(...Object.values({ ...this.data.values }));
+      return Math.max(...Object.values({...this.data.values}));
     }
   },
 

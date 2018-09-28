@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { mapMutations, mapActions } from 'vuex';
+import {mapMutations, mapActions} from 'vuex';
 import StreakForm from './StreakForm.vue';
 
 export default {

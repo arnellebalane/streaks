@@ -39,7 +39,7 @@ export default {
 
   computed: {
     highestValue() {
-      const { value = 0, date } = this.data.highestValue || {};
+      const {value = 0, date} = this.data.highestValue || {};
       return {
         value: value,
         info: value ? format(date, 'MMMM D') : '-'
@@ -47,7 +47,7 @@ export default {
     },
 
     currentStreak() {
-      const { value = 0, startDate, endDate } = this.data.currentStreak || {};
+      const {value = 0, startDate, endDate} = this.data.currentStreak || {};
       const result = {
         value: `${value} ${value === 1 ? 'day' : 'days'}`,
         info: '-'

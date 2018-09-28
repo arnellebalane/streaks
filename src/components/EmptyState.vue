@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import {mapMutations} from 'vuex';
 import BaseButton from './BaseButton.vue';
 
 export default {

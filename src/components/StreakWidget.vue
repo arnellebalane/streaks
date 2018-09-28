@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import {mapActions} from 'vuex';
 import StreakWidgetHeader from './StreakWidgetHeader.vue';
 import StreakWidgetGraph from './StreakWidgetGraph.vue';
 import StreakWidgetStats from './StreakWidgetStats.vue';

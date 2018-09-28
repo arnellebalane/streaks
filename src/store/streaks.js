@@ -1,8 +1,8 @@
 import nanoid from 'nanoid';
 import format from 'date-fns/format';
-import { getWeeks, getMonths } from '@/lib/graph-utils';
+import {getWeeks, getMonths} from '@/lib/graph-utils';
 import indexedDB from '@/lib/indexed-db';
-import { getHighestValue, getCurrentStreak } from '@/lib/streak-helpers';
+import {getHighestValue, getCurrentStreak} from '@/lib/streak-helpers';
 
 const today = new Date();
 const weeks = getWeeks(today);
@@ -26,10 +26,10 @@ const mutations = {
     state.streaks = [streak, ...state.streaks];
   },
 
-  updateStreak(state, { streakKey, streakData }) {
+  updateStreak(state, {streakKey, streakData}) {
     state.streaks = state.streaks.map(streak => {
       if (streak.id === streakKey) {
-        return { ...streak, ...streakData };
+        return {...streak, ...streakData};
       }
       return streak;
     });
@@ -45,7 +45,7 @@ const mutations = {
 };
 
 const actions = {
-  async fetchStreaks({ commit }) {
+  async fetchStreaks({commit}) {
     const db = await indexedDB;
     const tx = db.transaction('streaks', 'readwrite');
     const streaks = await tx.objectStore('streaks').getAll();
@@ -59,7 +59,7 @@ const actions = {
     });
   },
 
-  async createStreak({ commit }, streakData) {
+  async createStreak({commit}, streakData) {
     const data = {
       id: nanoid(),
       createdAt: new Date(),
@@ -73,24 +73,24 @@ const actions = {
     commit('addStreak', data);
   },
 
-  async editStreak({ commit }, { streakKey, streakData }) {
+  async editStreak({commit}, {streakKey, streakData}) {
     const db = await indexedDB;
     const tx = db.transaction('streaks', 'readwrite');
     const streak = await tx.objectStore('streaks').get(streakKey);
 
-    const updatedStreak = { ...streak, ...streakData };
+    const updatedStreak = {...streak, ...streakData};
     await tx.objectStore('streaks').put(updatedStreak);
-    commit('updateStreak', { streakKey, streakData: updatedStreak });
+    commit('updateStreak', {streakKey, streakData: updatedStreak});
   },
 
-  async deleteStreak({ commit }, streakKey) {
+  async deleteStreak({commit}, streakKey) {
     const db = await indexedDB;
     const tx = db.transaction('streaks', 'readwrite');
     await tx.objectStore('streaks').delete(streakKey);
     commit('deleteStreak', streakKey);
   },
 
-  async updateStreakValue({ commit }, { streakKey, delta }) {
+  async updateStreakValue({commit}, {streakKey, delta}) {
     const db = await indexedDB;
     const tx = db.transaction('streaks', 'readwrite');
     const streak = await tx.objectStore('streaks').get(streakKey);
@@ -108,15 +108,15 @@ const actions = {
     }
 
     await tx.objectStore('streaks').put(streak);
-    commit('updateStreak', { streakKey, streakData: streak });
+    commit('updateStreak', {streakKey, streakData: streak});
   },
 
-  async incrementStreak({ dispatch }, streakKey) {
-    await dispatch('updateStreakValue', { streakKey, delta: 1 });
+  async incrementStreak({dispatch}, streakKey) {
+    await dispatch('updateStreakValue', {streakKey, delta: 1});
   },
 
-  async decrementStreak({ dispatch }, streakKey) {
-    await dispatch('updateStreakValue', { streakKey, delta: -1 });
+  async decrementStreak({dispatch}, streakKey) {
+    await dispatch('updateStreakValue', {streakKey, delta: -1});
   }
 };
 

@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
+import {mapGetters, mapMutations} from 'vuex';
 import BaseButton from './BaseButton.vue';
 
 export default {

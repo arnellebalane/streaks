@@ -4,7 +4,7 @@ import differenceInCalendarDays from 'date-fns/difference_in_calendar_days';
 import format from 'date-fns/format';
 
 export function getHighestValue(streak) {
-  const highestValue = { value: 0, date: null };
+  const highestValue = {value: 0, date: null};
   for (const date in streak.values) {
     const value = streak.values[date];
     if (value >= highestValue.value) {
@@ -36,5 +36,5 @@ export function getCurrentStreak(streak) {
   }
   const startDate = addDays(date, 1);
   const value = differenceInCalendarDays(endDate, startDate) + 1;
-  return { value, startDate, endDate };
+  return {value, startDate, endDate};
 }

@@ -46,7 +46,7 @@ export default {
     },
 
     listeners() {
-      const listeners = { ...this.$listeners };
+      const listeners = {...this.$listeners};
       delete listeners.input;
       return listeners;
     }

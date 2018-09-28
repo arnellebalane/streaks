@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex';
+import {mapState, mapGetters} from 'vuex';
 import TheNavbar from '@/components/TheNavbar.vue';
 import EmptyState from '@/components/EmptyState.vue';
 import StreakWidget from '@/components/StreakWidget.vue';
