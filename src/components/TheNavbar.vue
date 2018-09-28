@@ -17,25 +17,25 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
-import BaseButton from "./BaseButton.vue";
+import { mapGetters, mapMutations } from 'vuex';
+import BaseButton from './BaseButton.vue';
 
 export default {
-  name: "TheNavbar",
+  name: 'TheNavbar',
 
   components: {
     BaseButton
   },
 
-  computed: mapGetters("streaks", ["hasStreaks"]),
+  computed: mapGetters('streaks', ['hasStreaks']),
 
   mounted() {
     this.setNavbarHeight(this.$el.getBoundingClientRect().height);
   },
 
   methods: {
-    ...mapMutations(["setNavbarHeight"]),
-    ...mapMutations("streaks", ["setIsCreatingStreak"])
+    ...mapMutations(['setNavbarHeight']),
+    ...mapMutations('streaks', ['setIsCreatingStreak'])
   }
 };
 </script>

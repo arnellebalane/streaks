@@ -1,6 +1,6 @@
-import Vue from "vue";
-import Vuex from "vuex";
-import streaks from "./streaks";
+import Vue from 'vue';
+import Vuex from 'vuex';
+import streaks from './streaks';
 
 Vue.use(Vuex);
 

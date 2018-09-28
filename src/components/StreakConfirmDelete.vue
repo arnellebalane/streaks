@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import BaseButton from "./BaseButton.vue";
+import BaseButton from './BaseButton.vue';
 
 export default {
-  name: "StreakConfirmDelete",
+  name: 'StreakConfirmDelete',
 
   components: {
     BaseButton

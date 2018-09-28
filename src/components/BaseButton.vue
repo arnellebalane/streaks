@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "BaseButton",
+  name: 'BaseButton',
 
   props: {
     square: Boolean,
@@ -70,7 +70,7 @@ export default {
 }
 
 .loading::before {
-  content: "";
+  content: '';
   position: absolute;
   top: calc(50% - 1em / 2);
   left: calc(50% - 1em / 2);

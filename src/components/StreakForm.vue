@@ -30,10 +30,10 @@
 </template>
 
 <script>
-import BaseButton from "./BaseButton.vue";
+import BaseButton from './BaseButton.vue';
 
 export default {
-  name: "StreakForm",
+  name: 'StreakForm',
 
   components: {
     BaseButton
@@ -53,7 +53,7 @@ export default {
 
   methods: {
     onSubmit() {
-      this.$emit("submit", this.value);
+      this.$emit('submit', this.value);
     }
   }
 };

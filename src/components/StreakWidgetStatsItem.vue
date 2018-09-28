@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: "StreakWidgetStat",
+  name: 'StreakWidgetStat',
 
   props: {
     label: String,

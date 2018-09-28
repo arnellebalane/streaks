@@ -30,12 +30,12 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-import format from "date-fns/format";
-import StreakWidgetGraphCell from "./StreakWidgetGraphCell.vue";
+import { mapState } from 'vuex';
+import format from 'date-fns/format';
+import StreakWidgetGraphCell from './StreakWidgetGraphCell.vue';
 
 export default {
-  name: "StreakWidgetGraph",
+  name: 'StreakWidgetGraph',
 
   components: {
     StreakWidgetGraphCell
@@ -49,7 +49,7 @@ export default {
   },
 
   computed: {
-    ...mapState("streaks", ["months", "weeks"]),
+    ...mapState('streaks', ['months', 'weeks']),
 
     highestValue() {
       return Math.max(...Object.values({ ...this.data.values }));
@@ -63,12 +63,12 @@ export default {
       const left = (daySquareSize + daySquareMargin) * month.offset;
 
       return {
-        left: left + "px"
+        left: left + 'px'
       };
     },
 
     getGraphCellValue(date) {
-      const key = format(date, "YYYY-MM-DD");
+      const key = format(date, 'YYYY-MM-DD');
       if (!this.data.values) {
         return 0;
       }

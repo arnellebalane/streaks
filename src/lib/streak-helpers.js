@@ -1,7 +1,7 @@
-import addDays from "date-fns/add_days";
-import subDays from "date-fns/sub_days";
-import differenceInCalendarDays from "date-fns/difference_in_calendar_days";
-import format from "date-fns/format";
+import addDays from 'date-fns/add_days';
+import subDays from 'date-fns/sub_days';
+import differenceInCalendarDays from 'date-fns/difference_in_calendar_days';
+import format from 'date-fns/format';
 
 export function getHighestValue(streak) {
   const highestValue = { value: 0, date: null };
@@ -18,10 +18,10 @@ export function getHighestValue(streak) {
 export function getCurrentStreak(streak) {
   const values = streak.values || {};
   let date = new Date();
-  let dateKey = format(date, "YYYY-MM-DD");
+  let dateKey = format(date, 'YYYY-MM-DD');
   if (!values[dateKey]) {
     date = subDays(date, 1);
-    dateKey = format(date, "YYYY-MM-DD");
+    dateKey = format(date, 'YYYY-MM-DD');
   }
   if (!values[dateKey]) {
     return null;
@@ -29,10 +29,10 @@ export function getCurrentStreak(streak) {
 
   const endDate = date;
   date = subDays(date, 1);
-  dateKey = format(date, "YYYY-MM-DD");
+  dateKey = format(date, 'YYYY-MM-DD');
   while (values[dateKey]) {
     date = subDays(date, 1);
-    dateKey = format(date, "YYYY-MM-DD");
+    dateKey = format(date, 'YYYY-MM-DD');
   }
   const startDate = addDays(date, 1);
   const value = differenceInCalendarDays(endDate, startDate) + 1;

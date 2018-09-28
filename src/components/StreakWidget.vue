@@ -56,19 +56,17 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-import StreakWidgetHeader from "./StreakWidgetHeader.vue";
-import StreakWidgetGraph from "./StreakWidgetGraph.vue";
-import StreakWidgetStats from "./StreakWidgetStats.vue";
-import StreakWidgetLegend from "./StreakWidgetLegend.vue";
+import { mapActions } from 'vuex';
+import StreakWidgetHeader from './StreakWidgetHeader.vue';
+import StreakWidgetGraph from './StreakWidgetGraph.vue';
+import StreakWidgetStats from './StreakWidgetStats.vue';
+import StreakWidgetLegend from './StreakWidgetLegend.vue';
 
-const StreakForm = () =>
-  import(/* webpackChunkName: "streak-form" */ "./StreakForm.vue");
-const StreakConfirmDelete = () =>
-  import(/* webpackChunkName: "streak-confirm-delete" */ "./StreakConfirmDelete.vue");
+const StreakForm = () => import(/* webpackChunkName: "streak-form" */ './StreakForm.vue');
+const StreakConfirmDelete = () => import(/* webpackChunkName: "streak-confirm-delete" */ './StreakConfirmDelete.vue');
 
 export default {
-  name: "StreakWidget",
+  name: 'StreakWidget',
 
   components: {
     StreakForm,
@@ -99,12 +97,7 @@ export default {
   },
 
   methods: {
-    ...mapActions("streaks", [
-      "incrementStreak",
-      "decrementStreak",
-      "editStreak",
-      "deleteStreak"
-    ]),
+    ...mapActions('streaks', ['incrementStreak', 'decrementStreak', 'editStreak', 'deleteStreak']),
 
     onMenuEdit() {
       this.isMenuOpen = false;

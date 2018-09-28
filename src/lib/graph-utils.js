@@ -1,9 +1,9 @@
-import addDays from "date-fns/add_days";
-import subWeeks from "date-fns/sub_weeks";
-import startOfWeek from "date-fns/start_of_week";
-import isSameMonth from "date-fns/is_same_month";
-import isFuture from "date-fns/is_future";
-import format from "date-fns/format";
+import addDays from 'date-fns/add_days';
+import subWeeks from 'date-fns/sub_weeks';
+import startOfWeek from 'date-fns/start_of_week';
+import isSameMonth from 'date-fns/is_same_month';
+import isFuture from 'date-fns/is_future';
+import format from 'date-fns/format';
 
 const WEEKS_IN_YEAR = 52;
 const DAYS_IN_WEEK = 7;
@@ -30,9 +30,8 @@ export function getWeeks(today) {
 
 export function getMonths(weeks) {
   return weeks.reduce((months, [weekStart], i) => {
-    return !isSameMonth(weekStart, subWeeks(weekStart, 1)) &&
-      i < WEEKS_IN_YEAR - 1
-      ? [...months, { label: format(weekStart, "MMM"), offset: i }]
+    return !isSameMonth(weekStart, subWeeks(weekStart, 1)) && i < WEEKS_IN_YEAR - 1
+      ? [...months, { label: format(weekStart, 'MMM'), offset: i }]
       : months;
   }, []);
 }

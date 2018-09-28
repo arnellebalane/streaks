@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: "StreakWidgetHeader",
+  name: 'StreakWidgetHeader',
 
   props: {
     data: {

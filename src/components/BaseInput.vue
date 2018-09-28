@@ -18,13 +18,13 @@
 let counter = 0;
 
 export default {
-  name: "BaseInput",
+  name: 'BaseInput',
 
   props: {
     id: {
       type: String,
       default() {
-        return "BaseInput-" + counter++;
+        return 'BaseInput-' + counter++;
       }
     },
     label: String,
@@ -41,7 +41,7 @@ export default {
       },
 
       set(value) {
-        this.$emit("input", value);
+        this.$emit('input', value);
       }
     },
 

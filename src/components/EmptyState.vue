@@ -13,17 +13,17 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
-import BaseButton from "./BaseButton.vue";
+import { mapMutations } from 'vuex';
+import BaseButton from './BaseButton.vue';
 
 export default {
-  name: "EmptyState",
+  name: 'EmptyState',
 
   components: {
     BaseButton
   },
 
-  methods: mapMutations("streaks", ["setIsCreatingStreak"])
+  methods: mapMutations('streaks', ['setIsCreatingStreak'])
 };
 </script>
 

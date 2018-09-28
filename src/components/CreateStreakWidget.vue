@@ -9,11 +9,11 @@
 </template>
 
 <script>
-import { mapMutations, mapActions } from "vuex";
-import StreakForm from "./StreakForm.vue";
+import { mapMutations, mapActions } from 'vuex';
+import StreakForm from './StreakForm.vue';
 
 export default {
-  name: "CreateStreakWidget",
+  name: 'CreateStreakWidget',
 
   components: {
     StreakForm
@@ -22,15 +22,15 @@ export default {
   data() {
     return {
       streakData: {
-        name: ""
+        name: ''
       },
       isLoading: false
     };
   },
 
   methods: {
-    ...mapMutations("streaks", ["setIsCreatingStreak"]),
-    ...mapActions("streaks", ["createStreak"]),
+    ...mapMutations('streaks', ['setIsCreatingStreak']),
+    ...mapActions('streaks', ['createStreak']),
 
     async onSubmit() {
       this.isLoading = true;

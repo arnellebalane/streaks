@@ -19,12 +19,12 @@
 </template>
 
 <script>
-import format from "date-fns/format";
-import isSameDay from "date-fns/is_same_day";
-import StreakWidgetStatsItem from "./StreakWidgetStatsItem.vue";
+import format from 'date-fns/format';
+import isSameDay from 'date-fns/is_same_day';
+import StreakWidgetStatsItem from './StreakWidgetStatsItem.vue';
 
 export default {
-  name: "StreakWidgetStatsItems",
+  name: 'StreakWidgetStatsItems',
 
   components: {
     StreakWidgetStatsItem
@@ -42,24 +42,21 @@ export default {
       const { value = 0, date } = this.data.highestValue || {};
       return {
         value: value,
-        info: value ? format(date, "MMMM D") : "-"
+        info: value ? format(date, 'MMMM D') : '-'
       };
     },
 
     currentStreak() {
       const { value = 0, startDate, endDate } = this.data.currentStreak || {};
       const result = {
-        value: `${value} ${value === 1 ? "day" : "days"}`,
-        info: "-"
+        value: `${value} ${value === 1 ? 'day' : 'days'}`,
+        info: '-'
       };
       if (value) {
         if (isSameDay(startDate, endDate)) {
-          result.info = format(startDate, "MMMM D");
+          result.info = format(startDate, 'MMMM D');
         } else {
-          result.info = [
-            format(startDate, "MMMM D"),
-            format(endDate, "MMMM D")
-          ].join(" - ");
+          result.info = [format(startDate, 'MMMM D'), format(endDate, 'MMMM D')].join(' - ');
         }
       }
       return result;
