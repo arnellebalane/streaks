@@ -38,7 +38,12 @@
       "plugin:vue/essential",
       "@vue/prettier"
     ],
-    "rules": {},
+    "rules": {
+      "prettier/prettier": ["warn", {
+        "printWidth": 120,
+        "singleQuote": true
+      }]
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }
