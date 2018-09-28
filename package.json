@@ -25,24 +25,23 @@
     "vue-template-compiler": "^2.5.17"
   },
   "babel": {
-    "presets": [
-      "@vue/app"
-    ]
+    "presets": ["@vue/app"]
   },
   "eslintConfig": {
     "root": true,
     "env": {
       "node": true
     },
-    "extends": [
-      "plugin:vue/essential",
-      "@vue/prettier"
-    ],
+    "extends": ["plugin:vue/essential", "@vue/prettier"],
     "rules": {
-      "prettier/prettier": ["warn", {
-        "printWidth": 120,
-        "singleQuote": true
-      }]
+      "prettier/prettier": [
+        "warn",
+        {
+          "printWidth": 120,
+          "singleQuote": true,
+          "bracketSpacing": false
+        }
+      ]
     },
     "parserOptions": {
       "parser": "babel-eslint"
@@ -53,9 +52,5 @@
       "autoprefixer": {}
     }
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"]
 }
