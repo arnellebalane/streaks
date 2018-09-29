@@ -47,16 +47,16 @@ export default {
     },
 
     currentStreak() {
-      return this.getStreakDetails(this.data.currentStreak);
+      return this.getStreakDetails(this.data.currentStreak || {});
     },
 
     longestStreak() {
-      return this.getStreakDetails(this.data.longestStreak);
+      return this.getStreakDetails(this.data.longestStreak || {});
     }
   },
 
   methods: {
-    getStreakDetails({value = 0, startDate, endDate} = {}) {
+    getStreakDetails({value = 0, startDate, endDate}) {
       const result = {
         value: `${value} ${value === 1 ? 'day' : 'days'}`,
         info: '-'
