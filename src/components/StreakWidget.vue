@@ -97,7 +97,12 @@ export default {
   },
 
   methods: {
-    ...mapActions('streaks', ['incrementStreak', 'decrementStreak', 'editStreak', 'deleteStreak']),
+    ...mapActions('streaks', [
+      'incrementStreak',
+      'decrementStreak',
+      'editStreak',
+      'deleteStreak'
+    ]),
 
     onMenuEdit() {
       this.isMenuOpen = false;

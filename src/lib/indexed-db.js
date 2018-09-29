@@ -1,5 +1,9 @@
 import idb from 'idb';
-import {getHighestValue, getCurrentStreak, getLongestStreak} from './streak-helpers';
+import {
+  getHighestValue,
+  getCurrentStreak,
+  getLongestStreak
+} from './streak-helpers';
 
 const indexedDB = idb.open('streaks', 4, async upgradeDB => {
   /* eslint-disable no-fallthrough */
