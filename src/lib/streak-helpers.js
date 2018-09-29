@@ -45,6 +45,7 @@ export function getLongestStreak(streak) {
   let startDate = new Date(dateKeys[0]);
   let endDate = startDate;
   let longestStreak = {value: 0};
+  let loopRun = false;
 
   const maybeUpdateLongestStreak = (startDate, endDate) => {
     const streakLength = differenceInCalendarDays(endDate, startDate) + 1;
@@ -55,6 +56,11 @@ export function getLongestStreak(streak) {
 
   for (const dateKey of dateKeys) {
     const date = new Date(dateKey);
+    if (!values[dateKey]) {
+      continue;
+    }
+    loopRun = true;
+
     if (differenceInCalendarDays(date, endDate) <= 1) {
       endDate = date;
     } else {
@@ -62,7 +68,9 @@ export function getLongestStreak(streak) {
       startDate = endDate = date;
     }
   }
-  maybeUpdateLongestStreak(startDate, endDate);
+  if (loopRun) {
+    maybeUpdateLongestStreak(startDate, endDate);
+  }
 
   return longestStreak.value ? longestStreak : null;
 }
