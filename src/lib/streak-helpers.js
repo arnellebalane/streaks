@@ -38,3 +38,31 @@ export function getCurrentStreak(streak) {
   const value = differenceInCalendarDays(endDate, startDate) + 1;
   return {value, startDate, endDate};
 }
+
+export function getLongestStreak(streak) {
+  const values = streak.values || {};
+  const dateKeys = Object.keys(values);
+  let startDate = new Date(dateKeys[0]);
+  let endDate = startDate;
+  let longestStreak = {value: 0};
+
+  const maybeUpdateLongestStreak = (startDate, endDate) => {
+    const streakLength = differenceInCalendarDays(endDate, startDate) + 1;
+    if (streakLength >= longestStreak.value) {
+      longestStreak = {value: streakLength, startDate, endDate};
+    }
+  };
+
+  for (const dateKey of dateKeys) {
+    const date = new Date(dateKey);
+    if (differenceInCalendarDays(date, endDate) <= 1) {
+      endDate = date;
+    } else {
+      maybeUpdateLongestStreak(startDate, endDate);
+      startDate = endDate = date;
+    }
+  }
+  maybeUpdateLongestStreak(startDate, endDate);
+
+  return longestStreak.value ? longestStreak : null;
+}
