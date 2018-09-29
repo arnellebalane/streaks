@@ -2,8 +2,8 @@
   <div :class="$style.stats">
     <StreakWidgetStatsItem
       label="Longest Streak"
-      value="100 days"
-      info="April 1 - September 4"
+      :value="longestStreak.value"
+      :info="longestStreak.info"
     />
     <StreakWidgetStatsItem
       label="Current Streak"
@@ -42,7 +42,7 @@ export default {
       const {value = 0, date} = this.data.highestValue || {};
       return {
         value: value,
-        info: value ? format(date, 'MMMM D') : '-'
+        info: value ? format(date, 'MMM D, YYYY') : '-'
       };
     },
 
@@ -54,9 +54,25 @@ export default {
       };
       if (value) {
         if (isSameDay(startDate, endDate)) {
-          result.info = format(startDate, 'MMMM D');
+          result.info = format(startDate, 'MMM D, YYYY');
         } else {
-          result.info = [format(startDate, 'MMMM D'), format(endDate, 'MMMM D')].join(' - ');
+          result.info = [format(startDate, 'MMM D, YYYY'), format(endDate, 'MMM D, YYYY')].join(' - ');
+        }
+      }
+      return result;
+    },
+
+    longestStreak() {
+      const {value = 0, startDate, endDate} = this.data.longestStreak || {};
+      const result = {
+        value: `${value} ${value === 1 ? 'day' : 'days'}`,
+        info: '-'
+      };
+      if (value) {
+        if (isSameDay(startDate, endDate)) {
+          result.info = format(startDate, 'MMM D, YYYY');
+        } else {
+          result.info = [format(startDate, 'MMM D, YYYY'), format(endDate, 'MMM D, YYYY')].join(' - ');
         }
       }
       return result;
