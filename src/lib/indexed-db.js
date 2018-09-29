@@ -17,37 +17,40 @@ const indexedDB = idb.open('streaks', 4, async upgradeDB => {
   }
 });
 
-async function computeStreakHighestValues(upgradeDB) {
+async function mapStreaks(upgradeDB, callback) {
   const store = upgradeDB.transaction.objectStore('streaks');
   const streaks = await store.getAll();
 
-  const updatedStreaks = streaks.map(streak => {
-    return streak.values ? {...streak, highestValue: getHighestValue(streak)} : streak;
-  });
+  const updatedStreaks = streaks.map(callback);
 
   await Promise.all(updatedStreaks.map(streak => store.put(streak)));
+}
+
+async function computeStreakHighestValues(upgradeDB) {
+  await mapStreaks(
+    upgradeDB,
+    streak => streak.values
+      ? {...streak, highestValue: getHighestValue(streak)}
+      : streak
+  );
 }
 
 async function computeCurrentStreaks(upgradeDB) {
-  const store = upgradeDB.transaction.objectStore('streaks');
-  const streaks = await store.getAll();
-
-  const updatedStreaks = streaks.map(streak => {
-    return streak.values ? {...streak, currentStreak: getCurrentStreak(streak)} : streak;
-  });
-
-  await Promise.all(updatedStreaks.map(streak => store.put(streak)));
+  await mapStreaks(
+    upgradeDB,
+    streak => streak.values
+      ? {...streak, currentStreak: getCurrentStreak(streak)}
+      : streak
+  );
 }
 
 async function computeLongestStreaks(upgradeDB) {
-  const store = upgradeDB.transaction.objectStore('streaks');
-  const streaks = await store.getAll();
-
-  const updatedStreaks = streaks.map(streak => {
-    return streak.values ? {...streak, longestStreak: getLongestStreak(streak)} : streak;
-  });
-
-  await Promise.all(updatedStreaks.map(streak => store.put(streak)));
+  await mapStreaks(
+    upgradeDB,
+    streak => streak.values
+      ? {...streak, longestStreak: getLongestStreak(streak)}
+      : streak
+  );
 }
 
 export default indexedDB;
