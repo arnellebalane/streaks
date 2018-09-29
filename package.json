@@ -21,28 +21,23 @@
     "@vue/cli-plugin-eslint": "^3.0.1",
     "@vue/cli-plugin-pwa": "^3.0.1",
     "@vue/cli-service": "^3.0.1",
-    "@vue/eslint-config-prettier": "^3.0.1",
     "vue-template-compiler": "^2.5.17"
   },
   "babel": {
-    "presets": ["@vue/app"]
+    "presets": [
+      "@vue/app"
+    ]
   },
   "eslintConfig": {
     "root": true,
     "env": {
       "node": true
     },
-    "extends": ["plugin:vue/essential", "@vue/prettier"],
-    "rules": {
-      "prettier/prettier": [
-        "warn",
-        {
-          "printWidth": 120,
-          "singleQuote": true,
-          "bracketSpacing": false
-        }
-      ]
-    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
     "parserOptions": {
       "parser": "babel-eslint"
     }
@@ -52,5 +47,9 @@
       "autoprefixer": {}
     }
   },
-  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"]
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }
