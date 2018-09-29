@@ -42,40 +42,35 @@ export default {
       const {value = 0, date} = this.data.highestValue || {};
       return {
         value: value,
-        info: value ? format(date, 'MMM D, YYYY') : '-'
+        info: value ? this.formatDate(date) : '-'
       };
     },
 
     currentStreak() {
-      const {value = 0, startDate, endDate} = this.data.currentStreak || {};
+      return this.getStreakDetails(this.data.currentStreak);
+    },
+
+    longestStreak() {
+      return this.getStreakDetails(this.data.longestStreak);
+    }
+  },
+
+  methods: {
+    getStreakDetails({value = 0, startDate, endDate} = {}) {
       const result = {
         value: `${value} ${value === 1 ? 'day' : 'days'}`,
         info: '-'
       };
       if (value) {
-        if (isSameDay(startDate, endDate)) {
-          result.info = format(startDate, 'MMM D, YYYY');
-        } else {
-          result.info = [format(startDate, 'MMM D, YYYY'), format(endDate, 'MMM D, YYYY')].join(' - ');
-        }
+        result.info = isSameDay(startDate, endDate)
+          ? this.formatDate(startDate)
+          : [this.formatDate(startDate), this.formatDate(endDate)].join(' - ');
       }
       return result;
     },
 
-    longestStreak() {
-      const {value = 0, startDate, endDate} = this.data.longestStreak || {};
-      const result = {
-        value: `${value} ${value === 1 ? 'day' : 'days'}`,
-        info: '-'
-      };
-      if (value) {
-        if (isSameDay(startDate, endDate)) {
-          result.info = format(startDate, 'MMM D, YYYY');
-        } else {
-          result.info = [format(startDate, 'MMM D, YYYY'), format(endDate, 'MMM D, YYYY')].join(' - ');
-        }
-      }
-      return result;
+    formatDate(date) {
+      return format(date, 'MMM D, YYYY');
     }
   }
 };
