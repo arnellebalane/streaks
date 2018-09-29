@@ -37,7 +37,14 @@
       "plugin:vue/essential",
       "eslint:recommended"
     ],
-    "rules": {},
+    "rules": {
+      "max-len": ["warn", {
+        "code": 120,
+        "tabWidth": 2
+      }],
+      "quotes": ["warn", "single"],
+      "semi": ["warn", "always"]
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }
