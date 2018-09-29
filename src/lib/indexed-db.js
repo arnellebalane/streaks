@@ -5,7 +5,7 @@ import {
   getLongestStreak
 } from './streak-helpers';
 
-const indexedDB = idb.open('streaks', 4, async upgradeDB => {
+const indexedDB = idb.open('streaks', 5, async upgradeDB => {
   /* eslint-disable no-fallthrough */
   switch (upgradeDB.oldVersion) {
     case 0:
@@ -17,6 +17,7 @@ const indexedDB = idb.open('streaks', 4, async upgradeDB => {
     case 2:
       await computeCurrentStreaks(upgradeDB);
     case 3:
+    case 4:
       await computeLongestStreaks(upgradeDB);
   }
 });
