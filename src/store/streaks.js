@@ -1,6 +1,6 @@
 import nanoid from 'nanoid';
 import format from 'date-fns/format';
-import {getWeeks, getMonths} from '@/lib/graph-utils';
+import {getWeeks, getMonths} from '@/lib/graph-helpers';
 import indexedDB from '@/lib/indexed-db';
 import {getHighestValue, getCurrentStreak} from '@/lib/streak-helpers';
 
