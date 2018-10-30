@@ -2,7 +2,11 @@ import nanoid from 'nanoid';
 import format from 'date-fns/format';
 import {getWeeks, getMonths} from '@/lib/graph-helpers';
 import indexedDB from '@/lib/indexed-db';
-import {getHighestValue, getCurrentStreak} from '@/lib/streak-helpers';
+import {
+  getHighestValue,
+  getCurrentStreak,
+  getLongestStreak
+} from '@/lib/streak-helpers';
 
 const today = new Date();
 const weeks = getWeeks(today);
@@ -99,7 +103,13 @@ const actions = {
 
     streak.highestValue = getHighestValue(streak);
     if (updatedValue < 2) {
+      const currentStreak = streak.currentStreak;
       streak.currentStreak = getCurrentStreak(streak);
+
+      if (!currentStreak || !streak.currentStreak
+      || currentStreak.value !== streak.currentStreak.value) {
+        streak.longestStreak = getLongestStreak(streak);
+      }
     }
 
     await tx.objectStore('streaks').put(streak);
