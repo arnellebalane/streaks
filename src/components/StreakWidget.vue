@@ -52,6 +52,8 @@
       @confirm="deleteStreak(data.id)"
       @cancel="isDeleting = false"
     />
+
+    <StreakWidgetTooltip ref="tooltip" />
   </article>
 </template>
 
@@ -61,6 +63,7 @@ import StreakWidgetHeader from './StreakWidgetHeader.vue';
 import StreakWidgetGraph from './StreakWidgetGraph.vue';
 import StreakWidgetStats from './StreakWidgetStats.vue';
 import StreakWidgetLegend from './StreakWidgetLegend.vue';
+import StreakWidgetTooltip from './StreakWidgetTooltip.vue';
 
 const StreakForm = () => import(/* webpackChunkName: "streak-form" */ './StreakForm.vue');
 const StreakConfirmDelete = () => import(/* webpackChunkName: "streak-confirm-delete" */ './StreakConfirmDelete.vue');
@@ -74,7 +77,8 @@ export default {
     StreakWidgetHeader,
     StreakWidgetGraph,
     StreakWidgetStats,
-    StreakWidgetLegend
+    StreakWidgetLegend,
+    StreakWidgetTooltip
   },
 
   props: {
@@ -94,6 +98,12 @@ export default {
         name: this.data.name
       }
     };
+  },
+
+  provide: {
+    getTooltip() {
+      return this.$refs.tooltip;
+    }
   },
 
   methods: {
