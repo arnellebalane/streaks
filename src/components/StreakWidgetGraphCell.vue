@@ -1,5 +1,10 @@
 <template>
-  <div :class="[$style.cell, colorScaleClass]"></div>
+  <div
+    :class="[$style.cell, colorScaleClass]"
+    @mouseenter="handleMouseEnter"
+    @mouseleave="handleMouseLeave"
+  >
+  </div>
 </template>
 
 <script>
@@ -7,6 +12,10 @@ export default {
   name: 'StreakWidgetGraphCell',
 
   props: {
+    date: {
+      type: Date,
+      required: true
+    },
     value: {
       type: Number,
       required: true
@@ -32,6 +41,26 @@ export default {
         return [this.$style.scale, this.$style.scale4];
       }
       return [this.$style.scale, this.$style.scale5];
+    },
+
+    tooltip() {
+      // StreakWidget
+      //   StreakWidgetGraph
+      //     StreakWidgetGraphCell
+      //   StreakWidgetTooltip ref="tooltip"
+      return this.$parent.$parent.$refs.tooltip;
+    }
+  },
+
+  methods: {
+    handleMouseEnter() {
+      const {date, value} = this;
+      const rect = this.$el.getBoundingClientRect();
+      this.tooltip.show({date, value, rect});
+    },
+
+    handleMouseLeave() {
+      this.tooltip.hide();
     }
   }
 };
