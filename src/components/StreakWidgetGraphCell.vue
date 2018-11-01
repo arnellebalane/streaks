@@ -7,11 +7,17 @@ export default {
   name: 'StreakWidgetGraphCell',
 
   props: {
+    date: {
+      type: Date,
+      required: true
+    },
     value: {
       type: Number,
       required: true
     }
   },
+
+  inject: ['getTooltip'],
 
   computed: {
     highestValue() {

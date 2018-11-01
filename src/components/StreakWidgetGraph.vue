@@ -22,6 +22,7 @@
           v-for="(date, j) in week"
           :key="j"
           :class="$style.day"
+          :date="date"
           :value="getGraphCellValue(date)"
         />
       </div>
