@@ -55,7 +55,8 @@ export default {
   methods: {
     handleMouseEnter() {
       const {date, value} = this;
-      this.tooltip.show({date, value});
+      const rect = this.$el.getBoundingClientRect();
+      this.tooltip.show({date, value, rect});
     },
 
     handleMouseLeave() {

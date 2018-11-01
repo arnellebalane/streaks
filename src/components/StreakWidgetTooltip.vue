@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isShown" :class="$style.tooltip">
+  <div v-show="isShown" :class="$style.tooltip" :style="tooltipStyles">
     <span :class="$style.value">{{ value }} {{ pluralize(value, 'instance') }}</span>
     <time :class="$style.date">{{ formattedDate }}</time>
   </div>
@@ -14,7 +14,8 @@ export default {
   data() {
     return {
       date: null,
-      value: null
+      value: null,
+      rect: null
     };
   },
 
@@ -24,19 +25,41 @@ export default {
     },
 
     formattedDate() {
-      return this.date ? format(this.date, 'MMM D, YYYY') : null;
+      return this.date
+        ? format(this.date, 'MMM D, YYYY')
+        : null;
+    },
+
+    position() {
+      const streakWidget = this.$parent.$el;
+      if (!this.rect || !streakWidget) return null;
+
+      const widgetRect = streakWidget.getBoundingClientRect();
+      return {
+        x: (this.rect.left + this.rect.width / 2) - widgetRect.left,
+        y: this.rect.top - widgetRect.top
+      };
+    },
+
+    tooltipStyles() {
+      return {
+        top: (this.position ? this.position.y : 0) + 'px',
+        left: (this.position ? this.position.x : 0) + 'px'
+      };
     }
   },
 
   methods: {
-    show({date, value}) {
+    show({date, value, rect}) {
       this.date = date;
       this.value = value;
+      this.rect = rect;
     },
 
     hide() {
       this.date = null;
       this.value = null;
+      this.rect = null;
     },
 
     pluralize(value, word) {
@@ -49,6 +72,7 @@ export default {
 
 <style module>
 .tooltip {
+  --tooltip-arrow-size: 3px;
   --tooltip-background: #333;
 
   padding: 0.5em 0.75em;
@@ -59,18 +83,19 @@ export default {
   font-size: 1.2rem;
   color: #fff;
   background-color: var(--tooltip-background);
+  transform: translate(-50%, calc(-1 * (100% + var(--tooltip-arrow-size))));
+  pointer-events: none;
+  white-space: nowrap;
 }
 
 .tooltip::after {
-  --arrow-size: 4px;
-
   content: "";
-  border-top: var(--arrow-size) solid var(--tooltip-background);
-  border-left: var(--arrow-size) solid transparent;
-  border-right: var(--arrow-size) solid transparent;
+  border-top: var(--tooltip-arrow-size) solid var(--tooltip-background);
+  border-left: var(--tooltip-arrow-size) solid transparent;
+  border-right: var(--tooltip-arrow-size) solid transparent;
   position: absolute;
   top: 100%;
-  left: calc(50% - var(--arrow-size) / 2);
+  left: calc(50% - var(--tooltip-arrow-size));
 }
 
 .value {
