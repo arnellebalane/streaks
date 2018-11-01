@@ -1,5 +1,10 @@
 <template>
-  <div :class="[$style.cell, colorScaleClass]"></div>
+  <div
+    :class="[$style.cell, colorScaleClass]"
+    @mouseenter="handleMouseEnter"
+    @mouseleave="handleMouseLeave"
+  >
+  </div>
 </template>
 
 <script>
@@ -16,8 +21,6 @@ export default {
       required: true
     }
   },
-
-  inject: ['getTooltip'],
 
   computed: {
     highestValue() {
@@ -38,6 +41,25 @@ export default {
         return [this.$style.scale, this.$style.scale4];
       }
       return [this.$style.scale, this.$style.scale5];
+    },
+
+    tooltip() {
+      // StreakWidget
+      //   StreakWidgetGraph
+      //     StreakWidgetGraphCell
+      //   StreakWidgetTooltip ref="tooltip"
+      return this.$parent.$parent.$refs.tooltip;
+    }
+  },
+
+  methods: {
+    handleMouseEnter() {
+      const {date, value} = this;
+      this.tooltip.show({date, value});
+    },
+
+    handleMouseLeave() {
+      this.tooltip.hide();
     }
   }
 };

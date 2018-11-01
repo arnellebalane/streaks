@@ -100,12 +100,6 @@ export default {
     };
   },
 
-  provide: {
-    getTooltip() {
-      return this.$refs.tooltip;
-    }
-  },
-
   methods: {
     ...mapActions('streaks', [
       'incrementStreak',
