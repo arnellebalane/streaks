@@ -1,13 +1,49 @@
 <template>
-  <div :class="$style.tooltip">
-    <span :class="$style.value">10 instances</span>
-    <time :class="$style.date">Jan 1, 2018</time>
+  <div v-if="isShown" :class="$style.tooltip">
+    <span :class="$style.value">{{ value }} {{ pluralize(value, 'instance') }}</span>
+    <time :class="$style.date">{{ formattedDate }}</time>
   </div>
 </template>
 
 <script>
+import format from 'date-fns/format';
+
 export default {
-  name: 'StreakWidgetTooltip'
+  name: 'StreakWidgetTooltip',
+
+  data() {
+    return {
+      date: null,
+      value: null
+    };
+  },
+
+  computed: {
+    isShown() {
+      return this.value !== null;
+    },
+
+    formattedDate() {
+      return this.date ? format(this.date, 'MMM D, YYYY') : null;
+    }
+  },
+
+  methods: {
+    show({date, value}) {
+      this.date = date;
+      this.value = value;
+    },
+
+    hide() {
+      this.date = null;
+      this.value = null;
+    },
+
+    pluralize(value, word) {
+      // Very naive implementation, I know 😢
+      return value === 1 ? word : word + 's';
+    }
+  }
 };
 </script>
 
