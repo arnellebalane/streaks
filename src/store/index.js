@@ -4,9 +4,15 @@ import streaks from './streaks';
 
 Vue.use(Vuex);
 
-const state = {};
+const state = {
+  windowWidth: 0
+};
 
-const mutations = {};
+const mutations = {
+  setWindowWidth(state, windowWidth) {
+    state.windowWidth = windowWidth;
+  }
+};
 
 export default new Vuex.Store({
   state,

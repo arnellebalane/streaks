@@ -4,6 +4,24 @@
   </div>
 </template>
 
+<script>
+  import {mapMutations} from 'vuex';
+
+  export default {
+    name: 'App',
+
+    mounted() {
+      this.setWindowWidth(window.innerWidth);
+
+      window.addEventListener('resize', () => {
+        this.setWindowWidth(window.innerWidth);
+      });
+    },
+
+    methods: mapMutations(['setWindowWidth'])
+  };
+</script>
+
 <style>
 :root {
   --primary-color: #2d9cdb;
