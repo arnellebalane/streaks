@@ -1,6 +1,9 @@
 <template>
   <header :class="$style.header">
-    <div :class="[$shared.wrapper, $style.wrapper]">
+    <div
+      :class="[$shared.wrapper, $style.wrapper]"
+      :style="{width: `${wrapperWidth}px`}"
+    >
       <h1>Your Streaks</h1>
 
       <BaseButton
@@ -27,7 +30,7 @@ export default {
     BaseButton
   },
 
-  computed: mapGetters('streaks', ['hasStreaks']),
+  computed: mapGetters('streaks', ['hasStreaks', 'wrapperWidth']),
 
   methods: mapMutations('streaks', ['setIsCreatingStreak'])
 };

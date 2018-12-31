@@ -2,7 +2,7 @@
   <div>
     <TheNavbar />
 
-    <div :class="$shared.wrapper">
+    <div :class="$shared.wrapper" :style="{width: `${wrapperWidth}px`}">
       <EmptyState
         v-if="!hasStreaks && !isCreatingStreak"
         :class="$style.feedWidget"
@@ -44,7 +44,7 @@ export default {
 
   computed: {
     ...mapState('streaks', ['streaks', 'isCreatingStreak']),
-    ...mapGetters('streaks', ['hasStreaks'])
+    ...mapGetters('streaks', ['hasStreaks', 'wrapperWidth'])
   }
 };
 </script>
