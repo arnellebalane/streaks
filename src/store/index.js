@@ -4,15 +4,9 @@ import streaks from './streaks';
 
 Vue.use(Vuex);
 
-const state = {
-  navbarHeight: 0
-};
+const state = {};
 
-const mutations = {
-  setNavbarHeight(state, navbarHeight) {
-    state.navbarHeight = navbarHeight;
-  }
-};
+const mutations = {};
 
 export default new Vuex.Store({
   state,

@@ -29,14 +29,7 @@ export default {
 
   computed: mapGetters('streaks', ['hasStreaks']),
 
-  mounted() {
-    this.setNavbarHeight(this.$el.getBoundingClientRect().height);
-  },
-
-  methods: {
-    ...mapMutations(['setNavbarHeight']),
-    ...mapMutations('streaks', ['setIsCreatingStreak'])
-  }
+  methods: mapMutations('streaks', ['setIsCreatingStreak'])
 };
 </script>
 
