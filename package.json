@@ -81,5 +81,13 @@
       "vue-cli-service lint",
       "git add"
     ]
+  },
+  "vue": {
+    "pwa": {
+      "workboxPluginMode": "InjectManifest",
+      "workboxOptions": {
+        "swSrc": "./src/sw.js"
+      }
+    }
   }
 }
