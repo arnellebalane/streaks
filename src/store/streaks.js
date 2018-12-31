@@ -113,7 +113,7 @@ const actions = {
     await tx.objectStore('streaks').put(data);
     commit('addStreak', data);
 
-    gtag('send', 'create', {
+    gtag('event', 'create', {
       event_category: 'Streak'
     });
   },
