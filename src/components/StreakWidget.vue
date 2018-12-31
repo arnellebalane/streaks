@@ -167,15 +167,17 @@ export default {
   align-items: flex-end;
 }
 
+@media (max-width: 662px) {
+  .legend {
+    display: none;
+  }
+}
+
 @media (max-width: 600px) {
   .stats,
   .extras {
     flex: initial;
     width: 100%;
-  }
-
-  .legend {
-    display: none;
   }
 }
 

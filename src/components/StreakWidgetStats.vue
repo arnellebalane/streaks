@@ -101,4 +101,16 @@ export default {
     margin-bottom: 4px;
   }
 }
+
+@media (max-width: 600px) {
+  .stats {
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 378px) {
+  .stats {
+    padding-left: 0;
+  }
+}
 </style>

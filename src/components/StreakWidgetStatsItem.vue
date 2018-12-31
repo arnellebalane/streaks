@@ -25,10 +25,6 @@ export default {
   text-align: center;
 }
 
-.stat > * {
-  flex-shrink: 0;
-}
-
 .label {
   order: 1;
   margin: 0;
@@ -79,12 +75,23 @@ export default {
 
   .info {
     display: block;
+    width: 15.6rem;
   }
 }
 
 @media (max-width: 600px) {
   .label {
     margin-right: auto;
+  }
+}
+
+@media (max-width: 500px) {
+  .value {
+    margin-right: 0;
+  }
+
+  .info {
+    display: none;
   }
 }
 </style>
