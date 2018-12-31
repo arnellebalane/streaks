@@ -11,10 +11,10 @@
     name: 'App',
 
     mounted() {
-      this.setWindowWidth(window.innerWidth);
+      this.setWindowWidth(document.body.clientWidth);
 
       window.addEventListener('resize', () => {
-        this.setWindowWidth(window.innerWidth);
+        this.setWindowWidth(document.body.clientWidth);
       });
     },
 
