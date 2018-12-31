@@ -7,6 +7,7 @@ import {
   getCurrentStreak,
   getLongestStreak
 } from '@/lib/streak-helpers';
+import ga from '@/lib/google-analytics';
 
 const today = new Date();
 const weeks = getWeeks(today);
@@ -111,6 +112,8 @@ const actions = {
     const tx = db.transaction('streaks', 'readwrite');
     await tx.objectStore('streaks').put(data);
     commit('addStreak', data);
+
+    ga('send', 'event', 'Streak', 'create');
   },
 
   async editStreak({commit}, {streakKey, streakData}) {
