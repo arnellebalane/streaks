@@ -133,6 +133,10 @@ const actions = {
     const tx = db.transaction('streaks', 'readwrite');
     await tx.objectStore('streaks').delete(streakKey);
     commit('deleteStreak', streakKey);
+
+    gtag('event', 'delete', {
+      event_category: 'Streak'
+    });
   },
 
   async updateStreakValue({commit}, {streakKey, delta}) {
