@@ -59,6 +59,10 @@ const getters = {
     }
 
     return 0;
+  },
+
+  wrapperWidth(state, getters) {
+    return computeWidgetWidth(getters.weeks.length);
   }
 };
 
