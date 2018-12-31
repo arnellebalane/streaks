@@ -35,6 +35,8 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 2.4rem;
+  text-align: center;
   color: #fff;
   background-color: rgba(0, 0, 0, 0.75);
 }
