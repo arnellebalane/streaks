@@ -1,6 +1,9 @@
 <template>
   <header :class="$style.header">
-    <div :class="[$shared.wrapper, $style.wrapper]">
+    <div
+      :class="[$shared.wrapper, $style.wrapper]"
+      :style="{width: `${wrapperWidth}px`}"
+    >
       <h1>Your Streaks</h1>
 
       <BaseButton
@@ -27,16 +30,9 @@ export default {
     BaseButton
   },
 
-  computed: mapGetters('streaks', ['hasStreaks']),
+  computed: mapGetters('streaks', ['hasStreaks', 'wrapperWidth']),
 
-  mounted() {
-    this.setNavbarHeight(this.$el.getBoundingClientRect().height);
-  },
-
-  methods: {
-    ...mapMutations(['setNavbarHeight']),
-    ...mapMutations('streaks', ['setIsCreatingStreak'])
-  }
+  methods: mapMutations('streaks', ['setIsCreatingStreak'])
 };
 </script>
 

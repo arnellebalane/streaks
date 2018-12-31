@@ -12,6 +12,15 @@ const today = new Date();
 const weeks = getWeeks(today);
 const months = getMonths(weeks);
 
+function computeWidgetWidth(weeks) {
+  // Widget padding + days labels width
+  const extraWidth = 24 * 2 + 32;
+  const cellWidth = 12;
+  const cellMargin = 1;
+  const graphWidth = weeks * (cellWidth + cellMargin) - cellMargin;
+  return graphWidth + extraWidth;
+}
+
 const state = {
   weeks,
   months,
@@ -22,6 +31,38 @@ const state = {
 const getters = {
   hasStreaks(state) {
     return state.streaks.length > 0;
+  },
+
+  weeks(state, getters) {
+    const offset = state.months[getters.startMonth].offset;
+    return state.weeks.slice(offset);
+  },
+
+  months(state, getters) {
+    const offset = state.months[getters.startMonth].offset;
+
+    return state.months
+      .slice(getters.startMonth)
+      .map(month => ({...month, offset: month.offset - offset}));
+  },
+
+  startMonth(state, getters, rootState) {
+    const windowWidth = rootState.windowWidth;
+    const extraWidth = 32 * 2; // Page padding
+
+    for (let i = 0; i < state.months.length; i++) {
+      const weeks = state.weeks.length - state.months[i].offset;
+      const totalWidth = computeWidgetWidth(weeks) + extraWidth;
+      if (totalWidth <= windowWidth) {
+        return i;
+      }
+    }
+
+    return 0;
+  },
+
+  wrapperWidth(state, getters) {
+    return computeWidgetWidth(getters.weeks.length);
   }
 };
 

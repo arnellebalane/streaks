@@ -84,6 +84,33 @@ export default {
 
 .stats > * {
   flex: 1 0 0;
-  text-align: center;
+}
+
+@media (max-width: 720px) {
+  .stats {
+    display: block;
+    padding-left: 3.2rem;
+    padding-right: 2.4rem;
+  }
+
+  .stats > *:not(:first-child) {
+    margin-top: 4px;
+  }
+
+  .stats > *:not(:last-child) {
+    margin-bottom: 4px;
+  }
+}
+
+@media (max-width: 600px) {
+  .stats {
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 378px) {
+  .stats {
+    padding-left: 0;
+  }
 }
 </style>

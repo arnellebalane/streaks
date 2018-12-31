@@ -5,12 +5,12 @@ import streaks from './streaks';
 Vue.use(Vuex);
 
 const state = {
-  navbarHeight: 0
+  windowWidth: 0
 };
 
 const mutations = {
-  setNavbarHeight(state, navbarHeight) {
-    state.navbarHeight = navbarHeight;
+  setWindowWidth(state, windowWidth) {
+    state.windowWidth = windowWidth;
   }
 };
 
