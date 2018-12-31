@@ -22,7 +22,7 @@
       <StreakWidgetStats :class="$style.stats" :data="data" />
 
       <div :class="$style.extras">
-        <StreakWidgetLegend />
+        <StreakWidgetLegend :class="$style.legend" />
 
         <div :class="$style.actions">
           <button
@@ -152,6 +152,7 @@ export default {
 
 .footer {
   display: flex;
+  flex-wrap: wrap;
   margin-top: 2.4rem;
 }
 
@@ -164,6 +165,18 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+}
+
+@media (max-width: 600px) {
+  .stats,
+  .extras {
+    flex: initial;
+    width: 100%;
+  }
+
+  .legend {
+    display: none;
+  }
 }
 
 .actions {
@@ -180,6 +193,16 @@ export default {
   border: none;
   background: none;
   cursor: pointer;
+}
+
+@media (max-width: 720px) {
+  .actions {
+    flex-grow: initial;
+  }
+
+  .action {
+    height: 3.6rem;
+  }
 }
 
 .decrement {
