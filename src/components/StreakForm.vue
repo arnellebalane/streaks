@@ -65,6 +65,13 @@ export default {
   align-items: center;
 }
 
+@media (max-width: 500px) {
+  .header {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+}
+
 .input {
   flex-grow: 1;
   padding: 0;
@@ -72,6 +79,13 @@ export default {
   font-size: 1.8rem;
   font-weight: 500;
   outline: none;
+}
+
+@media (max-width: 500px) {
+  .input {
+    width: 100%;
+    margin-bottom: 1.2rem;
+  }
 }
 
 .input::-webkit-input-placeholder {
