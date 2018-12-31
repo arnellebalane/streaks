@@ -15,6 +15,7 @@ const months = getMonths(weeks);
 const state = {
   weeks,
   months,
+  startMonth: 0,
   streaks: [],
   isCreatingStreak: false
 };
@@ -22,6 +23,19 @@ const state = {
 const getters = {
   hasStreaks(state) {
     return state.streaks.length > 0;
+  },
+
+  weeks(state) {
+    const offset = state.months[state.startMonth].offset;
+    return state.weeks.slice(offset);
+  },
+
+  months(state) {
+    const offset = state.months[state.startMonth].offset;
+
+    return state.months
+      .slice(state.startMonth)
+      .map(month => ({...month, offset: month.offset - offset}));
   }
 };
 
