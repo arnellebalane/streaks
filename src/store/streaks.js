@@ -168,10 +168,18 @@ const actions = {
 
   async incrementStreak({dispatch}, streakKey) {
     await dispatch('updateStreakValue', {streakKey, delta: 1});
+
+    gtag('event', 'increment', {
+      event_category: 'Streak'
+    });
   },
 
   async decrementStreak({dispatch}, streakKey) {
     await dispatch('updateStreakValue', {streakKey, delta: -1});
+
+    gtag('event', 'decrement', {
+      event_category: 'Streak'
+    });
   }
 };
 
